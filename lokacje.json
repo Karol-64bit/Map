@@ -1,0 +1,12 @@
+{
+    "name": "rzeszów",
+    "opis": "to jest miasto",
+    "description": "dasdas sdasd asdas adsd",
+    "lon": "10",
+    "lag": "180",
+    "Kategoria": {
+      "zamek": "true",
+      "plaża": "false",
+      "miasto": "true"
+    }
+  }
