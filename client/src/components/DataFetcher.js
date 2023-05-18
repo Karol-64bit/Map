@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 const DataFetcher = () => {
   const [data, setData] = useState([]);
 
+  // srednia hawajska dla kazdego
+
   useEffect(() => {
     const fetchData = async () => {
       try {
