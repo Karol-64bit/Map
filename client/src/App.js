@@ -28,3 +28,5 @@ function App() {
 }
 
 export default App;
+
+// Pizza z anansem i ciepłe wygazowane piwo
