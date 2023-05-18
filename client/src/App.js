@@ -30,3 +30,5 @@ function App() {
 export default App;
 
 // Pizza z anansem i ciepłe wygazowane piwo
+
+// Z domino niebainska skurwoalo cie nie omino
