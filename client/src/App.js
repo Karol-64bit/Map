@@ -6,7 +6,7 @@ function App() {
   const data = DataFetcher();
 
   console.log(data)
-
+  
   return (
     <div>
       {data.map((item, i) => (
