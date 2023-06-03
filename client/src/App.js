@@ -1,5 +1,6 @@
 // import React from 'react'
 import DataFetcher from './components/DataFetcher';
+import CategoryList from './components/CategoryList';
 
 function App() {
 
@@ -9,6 +10,7 @@ function App() {
   
   return (
     <div>
+      <CategoryList />
       {data.map((item, i) => (
         <div key={i}>
           <p>{item.id} {item.name}</p>

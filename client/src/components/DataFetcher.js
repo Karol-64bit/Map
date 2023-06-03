@@ -8,10 +8,10 @@ const DataFetcher = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api');
+        const response = await fetch('http://localhost:5000/api/places');
         const jsonData = await response.json();
-        // const dataArray = Object.values(jsonData);
-        setData(jsonData);
+        setData(jsonData.data);
+        console.log("ok")
       } catch (error) {
         console.error('Błąd pobierania danych z API:', error);
       }

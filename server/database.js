@@ -26,6 +26,7 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
                 var insert = 'INSERT INTO places (name, description, description_long, lat, lon, category) VALUES (?,?,?,?,?,?)'
                 db.run(insert, ["rzeszów","to jest miasto","to jest miasto dlugi opis","10","180","city"])
                 db.run(insert, ["warszawa","to jest stolica","to jest stolica dlugi opis","20","190","city"])
+                db.run(insert, ["hel","to jest miasto","to jest miasto dlugi opis","30","210","beach"])
             }
         });  
     }
