@@ -1,7 +1,7 @@
-import React from "react";
+import React, {useState} from "react";
 
 const CategoryMenu = () =>{
-  const categories = ['city', 'beach', 'caste']; 
+  const categories = ['city', 'beach', 'caste','aquapark']; 
 
   const [selectedCategories, setSelectedCategories] = useState([]);
 
@@ -19,7 +19,7 @@ const CategoryMenu = () =>{
       {categories.map((category, index) => (
         <div key={index}>
           <input
-            type="radio"
+            type="checkbox"
             id={category}
             name="category"
             value={category}
@@ -38,3 +38,5 @@ const CategoryMenu = () =>{
     </div>
   );
 }
+
+export default CategoryMenu

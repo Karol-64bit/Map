@@ -1,4 +1,4 @@
-// import React from 'react'
+import React, {useState} from 'react'
 import DataFetcher from './components/DataFetcher';
 import CategoryList from './components/CategoryList';
 
