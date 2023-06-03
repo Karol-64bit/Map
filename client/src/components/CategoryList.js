@@ -1,16 +1,21 @@
 import React, {useState} from "react";
 
-const CategoryMenu = () =>{
+const CategoryMenu = ({ onCategoryChange }) =>{
   const categories = ['city', 'beach', 'caste','aquapark']; 
 
   const [selectedCategories, setSelectedCategories] = useState([]);
 
   const handleCategoryChange = (category) => {
-    if (selectedCategories.includes(category)) {
-      setSelectedCategories(selectedCategories.filter((item) => item !== category));
+    const updatedCategories = [...selectedCategories];
+  
+    if (updatedCategories.includes(category)) {
+      updatedCategories.splice(updatedCategories.indexOf(category), 1);
     } else {
-      setSelectedCategories([...selectedCategories, category]);
+      updatedCategories.push(category);
     }
+  
+    setSelectedCategories(updatedCategories);
+    onCategoryChange(updatedCategories);
   };
 
   return (
