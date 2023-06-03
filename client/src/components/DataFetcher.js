@@ -17,12 +17,12 @@ const DataFetcher = ({ selectedCategories }) => {
       }
     };
 
-    // if (selectedCategories.length > 0) {
-    //   fetchData();
-    // } else {
-    //   setData([]);
-    // }
-    fetchData();
+    if (selectedCategories.length > 0) {
+      fetchData();
+    } else {
+      setData([]);
+    }
+    // fetchData();
   }, [selectedCategories]);
   {}
   return data; 

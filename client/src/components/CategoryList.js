@@ -1,21 +1,11 @@
-import React, {useState} from "react";
+import React, { useState } from 'react';
 
-const CategoryMenu = ({ onCategoryChange }) =>{
-  const categories = ['city', 'beach', 'caste','aquapark']; 
-
-  const [selectedCategories, setSelectedCategories] = useState([]);
+const CategoryList = ({ selectedCategories, onCategoryChange }) => {
+  const categories = ['city', 'beach', 'castle'];
 
   const handleCategoryChange = (category) => {
-    const updatedCategories = [...selectedCategories];
-  
-    if (updatedCategories.includes(category)) {
-      updatedCategories.splice(updatedCategories.indexOf(category), 1);
-    } else {
-      updatedCategories.push(category);
-    }
-  
-    setSelectedCategories(updatedCategories);
-    onCategoryChange(updatedCategories);
+    onCategoryChange(category);
+    console.log(selectedCategories);
   };
 
   return (
@@ -44,4 +34,4 @@ const CategoryMenu = ({ onCategoryChange }) =>{
   );
 }
 
-export default CategoryMenu
+export default CategoryList;
