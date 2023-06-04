@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import DataFetcher from './components/DataFetcher';
 import CategoryList from './components/CategoryList';
+import MapBox from './components/MapBox';
+
 
 function App() {
   const [selectedCategories, setSelectedCategories] = useState([]);
@@ -18,13 +20,9 @@ function App() {
   return (
     <div>
       <CategoryList selectedCategories={selectedCategories} onCategoryChange={handleCategoryChange} />
-      {data.map((item, i) => (
-        <div key={i}>
-          <p>
-            {item.id} {item.name}
-          </p>
-        </div>
-      ))}
+
+
+    <MapBox data={data} />
     </div>
   );
 }
