@@ -19,10 +19,11 @@ function App() {
 
   return (
     <div>
-      <CategoryList selectedCategories={selectedCategories} onCategoryChange={handleCategoryChange} />
+      {/* <CategoryList selectedCategories={selectedCategories} onCategoryChange={handleCategoryChange} />
+      
+      */} 
+      <MapBox />
 
-
-    <MapBox data={data} />
     </div>
   );
 }
