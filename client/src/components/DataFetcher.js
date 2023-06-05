@@ -24,7 +24,6 @@ const DataFetcher = ({ selectedCategories }) => {
     }
     // fetchData();
   }, [selectedCategories]);
-  {}
   return data; 
 };
 

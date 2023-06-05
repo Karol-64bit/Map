@@ -24,13 +24,12 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
             }else{
                 // Table just created, creating some rows
                 var insert = 'INSERT INTO places (name, description, description_long, lat, lon, category) VALUES (?,?,?,?,?,?)'
-                db.run(insert, ["rzeszów","to jest miasto","to jest miasto dlugi opis","10","180","city"])
-                db.run(insert, ["warszawa","to jest stolica","to jest stolica dlugi opis","20","190","city"])
-                db.run(insert, ["hel","to jest miasto","to jest miasto dlugi opis","30","210","beach"])
+                db.run(insert, ["rzeszów","to jest miasto","to jest miasto dlugi opis","50.04118062823397","21.99908104034367","city"])
+                db.run(insert, ["warszawa","to jest stolica","to jest stolica dlugi opis","52.227601405358534","21.01466388459734","city"])
+                db.run(insert, ["hel","to jest plaża","to jest plaża dlugi opis","54.60832188018254","18.800735916994903","beach"])
+                db.run(insert, ["malbork","to jest zamek","to jest zamek dlugi opis","54.03983963631113","19.028021402094723","castle"])
             }
         });  
     }
 });
-
-
 module.exports = db

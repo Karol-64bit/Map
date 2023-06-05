@@ -9,11 +9,12 @@ const CategoryList = ({ selectedCategories, onCategoryChange }) => {
   };
 
   return (
-    <div>
+    <div className='categoryDiv'>
       <h2>Wybierz kategorie:</h2>
       {categories.map((category, index) => (
-        <div key={index}>
+        <div key={index} className='listDiv'>
           <input
+            className='categoryInput'
             type="checkbox"
             id={category}
             name="category"
@@ -24,12 +25,6 @@ const CategoryList = ({ selectedCategories, onCategoryChange }) => {
           <label htmlFor={category}>{category}</label>
         </div>
       ))}
-      <h3>Wybrane kategorie:</h3>
-      <ul>
-        {selectedCategories.map((category, index) => (
-          <li key={index}>{category}</li>
-        ))}
-      </ul>
     </div>
   );
 }

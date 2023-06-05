@@ -1,0 +1,56 @@
+.leaflet-container {
+    height: 100%;
+    width: 100%;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.app{
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+.mapBoxDiv {
+    height: 100vh;
+    width: 100%;
+    background-color: darkgray;
+}
+
+.categoryDiv{
+    width: 250px;
+    height: 100vh;
+    background-color: rgb(255, 255, 255);
+    padding: 10px;
+    align-items:center;
+    flex-direction:row;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.categoryDiv h2 {
+    margin-bottom: 10px;
+    color: #333;
+}
+  
+.listDiv {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+  
+.categoryInput {
+    margin-right: 5px;
+}
+  
+.categoryInput:checked + label {
+    font-weight: bold;
+}
+  
+.label {
+    color: #555;
+}
+  
