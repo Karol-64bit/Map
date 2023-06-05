@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-const DataFetcher = () => {
+const DataFetcher = ({ selectedCategories }) => {
   const [data, setData] = useState([]);
 
   // srednia hawajska dla kazdego
@@ -8,18 +8,23 @@ const DataFetcher = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api');
+        const response = await fetch(`http://localhost:5000/api/category/${selectedCategories.join(',')}`);
         const jsonData = await response.json();
-        // const dataArray = Object.values(jsonData);
-        setData(jsonData);
+        setData(jsonData.data);
+        console.log("ok")
       } catch (error) {
         console.error('Błąd pobierania danych z API:', error);
       }
     };
 
-    fetchData();
-  }, []);
-
+    if (selectedCategories.length > 0) {
+      fetchData();
+    } else {
+      setData([]);
+    }
+    // fetchData();
+  }, [selectedCategories]);
+  {}
   return data; 
 };
 

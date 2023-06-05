@@ -1,31 +1,29 @@
-// import React from 'react'
+import React, { useState, useEffect } from 'react';
 import DataFetcher from './components/DataFetcher';
-import { GoogleMap } from '@react-google-maps';
+import CategoryList from './components/CategoryList';
+import MapBox from './components/MapBox';
+
 
 function App() {
+  const [selectedCategories, setSelectedCategories] = useState([]);
 
-  const data = DataFetcher();
+  const handleCategoryChange = (category) => {
+    if (selectedCategories.includes(category)) {
+      setSelectedCategories(selectedCategories.filter((item) => item !== category));
+    } else {
+      setSelectedCategories([...selectedCategories, category]);
+    }
+  };
 
-  function Map() {
-    return (
-      <GoogleMap
-        defaultZoom={10}
-        defaultCenter={{ lat: 45.4211, lng: -75.6903 }}
-      />
-    )
-  }
+  const data = DataFetcher({ selectedCategories });
 
-  console.log(data)
-  
   return (
     <div>
-      {/* {data.map((item, i) => (
-        <div key={i}>
-          <p>{item.id} {item.name}</p>
-          
-        </div>
-      ))} */}
+      {/* <CategoryList selectedCategories={selectedCategories} onCategoryChange={handleCategoryChange} />
       
+      */} 
+      <MapBox />
+
     </div>
   );
 }
