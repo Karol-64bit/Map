@@ -42,8 +42,14 @@
     margin-bottom: 5px;
 }
   
-.categoryInput {
+.categoryInput,
+.priceInput{
     margin-right: 5px;
+}
+
+.categoryInput:checked + label,
+.priceInput:checked + label{
+    font-weight: bold;
 }
   
 .categoryInput:checked + label {

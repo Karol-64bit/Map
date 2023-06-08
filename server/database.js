@@ -16,18 +16,21 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
             description_long text, 
             lat text, 
             lon text,
-            category text
+            category text,
+            price text
             )`,
         (err) => {
             if (err) {
                 // Table already created
+                console.log("Table already created")
             }else{
                 // Table just created, creating some rows
-                var insert = 'INSERT INTO places (name, description, description_long, lat, lon, category) VALUES (?,?,?,?,?,?)'
-                db.run(insert, ["rzeszów","to jest miasto","to jest miasto dlugi opis","50.04118062823397","21.99908104034367","city"])
-                db.run(insert, ["warszawa","to jest stolica","to jest stolica dlugi opis","52.227601405358534","21.01466388459734","city"])
-                db.run(insert, ["hel","to jest plaża","to jest plaża dlugi opis","54.60832188018254","18.800735916994903","beach"])
-                db.run(insert, ["malbork","to jest zamek","to jest zamek dlugi opis","54.03983963631113","19.028021402094723","castle"])
+                var insert = 'INSERT INTO places (name, description, description_long, lat, lon, category, price) VALUES (?,?,?,?,?,?,?)'
+                db.run(insert, ["rzeszów","to jest miasto","to jest miasto dlugi opis","50.04118062823397","21.99908104034367","city","low"])
+                db.run(insert, ["warszawa","to jest stolica","to jest stolica dlugi opis","52.227601405358534","21.01466388459734","city","high"])
+                db.run(insert, ["hel","to jest plaża","to jest plaża dlugi opis","54.60832188018254","18.800735916994903","beach","medium"])
+                db.run(insert, ["malbork","to jest zamek","to jest zamek dlugi opis","54.03983963631113","19.028021402094723","castle","medium"])
+                console.log("ok insert")
             }
         });  
     }

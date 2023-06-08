@@ -51,21 +51,6 @@ app.get("/api/places/:id", (req, res, next) => {
     });
 });
 
-// app.get("/api/category/:category", (req, res, next) => {
-//   var sql = "select * from places where category = ?"
-//   var params = [req.params.category]
-//   db.all(sql, params, (err, row) => {
-//       if (err) {
-//         res.status(400).json({"error":err.message});
-//         return;
-//       }
-//       res.json({
-//           "message":"success",
-//           "data":row
-//       })
-//     });
-// });
-
 app.get("/api/category/:categories", (req, res, next) => {
   var categories = req.params.categories.split(",");
 
@@ -73,6 +58,8 @@ app.get("/api/category/:categories", (req, res, next) => {
 
   var sql = "SELECT * FROM places WHERE category IN (" + placeholders + ")";
   var params = categories;
+
+  console.log(sql);
 
   db.all(sql, params, (err, rows) => {
     if (err) {
@@ -85,6 +72,52 @@ app.get("/api/category/:categories", (req, res, next) => {
     });
   });
 });
+
+app.get("/api/categoryandprice/:categories/:price", (req, res, next) => {
+  var categories = req.params.categories.split(",");
+  var price = req.params.price;
+
+  var placeholders = categories.map(() => "?").join(",");
+  
+  var sql = "SELECT * FROM places WHERE category IN (" + placeholders + ")";
+  var params = categories;
+
+  sql += " AND price = ?";
+  params.push(price);
+
+  console.log(sql);
+  
+  db.all(sql, params, (err, rows) => {
+    if (err) {
+      res.status(400).json({ "error": err.message });
+      return;
+    }
+    res.json({
+      "message": "success",
+      "data": rows
+    });
+  });
+});
+
+
+
+app.get("/api/test/", (req, res, next) => {
+  const sql = "SELECT name FROM sqlite_master WHERE type='table'";
+
+  // Wykonanie zapytania
+  db.all(sql, [], (err, rows) => {
+    if (err) {
+      console.error(err.message);
+      return;
+    }
+  
+    // Wyświetlenie nazw tabel
+    rows.forEach(row => {
+      console.log(row.name);
+    });
+  });
+});
+
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');

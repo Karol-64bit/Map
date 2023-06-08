@@ -6,6 +6,7 @@ import './App.css'
 
 function App() {
   const [selectedCategories, setSelectedCategories] = useState([]);
+  const [selectedPrice, setSelectedPrice] = useState('');
 
   const handleCategoryChange = (category) => {
     if (selectedCategories.includes(category)) {
@@ -15,12 +16,16 @@ function App() {
     }
   };
 
-  const data = DataFetcher({ selectedCategories });
+  const handlePriceChange = (price) => {
+    setSelectedPrice(price)
+  };
+
+  const data = DataFetcher({ selectedCategories ,selectedPrice});
 
 
   return (
     <div className='app'>
-      <CategoryList selectedCategories={selectedCategories} onCategoryChange={handleCategoryChange} />
+      <CategoryList selectedCategories={selectedCategories} onCategoryChange={handleCategoryChange} selectedPrice={selectedPrice} onPriceChange={handlePriceChange}/>
       
       <MapBox data={data} />
     </div>
