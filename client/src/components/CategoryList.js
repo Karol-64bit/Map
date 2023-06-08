@@ -17,8 +17,8 @@ const CategoryList = ({ selectedCategories, onCategoryChange, selectedPrice, onP
 
   return (
     <div className='categoryDiv'>
-      <h2>Filtry:</h2>
-      <h4>Typ miejsca:</h4>
+      <h2>Category:</h2>
+      <h4>Type of place:</h4>
       {categories.map((category, index) => (
         <div key={index} className='listDiv'>
           <input
@@ -34,7 +34,7 @@ const CategoryList = ({ selectedCategories, onCategoryChange, selectedPrice, onP
         </div>
       ))}
 
-      <h4>Koszty:</h4>
+      <h4>Prices:</h4>
       {prices.map((price, index) => (
         <div key={index} className='listDiv'>
           <input
