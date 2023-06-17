@@ -1,19 +1,29 @@
 import { useEffect, useState } from 'react';
 
-const DataFetcher = ({ selectedCategories }) => {
+const DataFetcher = ({ selectedCategories ,selectedPrice}) => {
   const [data, setData] = useState([]);
 
-  // srednia hawajska dla kazdego
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const response = await fetch(`http://localhost:5000/api/category/${selectedCategories.join(',')}`);
-        const jsonData = await response.json();
-        setData(jsonData.data);
-        console.log("ok")
-      } catch (error) {
-        console.error('Błąd pobierania danych z API:', error);
+      if(selectedPrice == ""){
+        try {
+          const response = await fetch(`http://localhost:5000/api/category/${selectedCategories.join(',')}`);
+          const jsonData = await response.json();
+          setData(jsonData.data);
+          console.log("ok")
+        } catch (error) {
+          console.error('Błąd pobierania danych z API:', error);
+        }
+      }else{
+        try {
+          const response = await fetch(`http://localhost:5000/api/categoryandprice/${selectedCategories.join(',')}/${selectedPrice}`);
+          const jsonData = await response.json();
+          setData(jsonData.data);
+          console.log("ok")
+        } catch (error) {
+          console.error('Błąd pobierania danych z API:', error);
+        }
       }
     };
 
@@ -23,8 +33,7 @@ const DataFetcher = ({ selectedCategories }) => {
       setData([]);
     }
     // fetchData();
-  }, [selectedCategories]);
-  {}
+  }, [selectedCategories, selectedPrice]);
   return data; 
 };
 

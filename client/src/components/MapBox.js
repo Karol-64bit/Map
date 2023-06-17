@@ -1,59 +1,46 @@
 import React from "react";
-import { GoogleMap, withScriptjs, withGoogleMap } from "react-google-maps";
 
-function Map() {
-    const [selected, setSelected] = useState(null);
+import "leaflet/dist/leaflet.css";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { Icon } from "leaflet";
 
+// create custom icon
+const customIcon = new Icon({
+    // iconUrl: "https://cdn-icons-png.flaticon.com/512/447/447031.png",
+    iconUrl: require("../icons/placeholder.png"),
+    iconSize: [38, 38] // size of the icon
+  });
+  
+
+const MapBox = ({data}) =>{
     return (
-    // Mapa z markerami
-    <GoogleMap defaultZoom={5} defaultCenter={{ lat: 52, lng: 21 }}>
-        {data.map(( item ) => (
-            <Marker
-                key={item.id}
-                position={{ 
-                    lat: item.lat, 
-                    lng: item.lon 
-                }}
-                onClick={() => { setSelected(item); }}
-            />
-        ))}
+        <div className="mapBoxDiv">
+        {/* {console.log(data)} */}
+            <MapContainer center={[51.75, 19.45]} zoom={6}>
+                {/* OPEN STREEN MAPS TILES */}
+                {/* <TileLayer
+                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                /> */}
+                {/* GOOGLE MAPS TILES */}
+                <TileLayer
+                    attribution="Google Maps"
+                    // url="http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}" // regular
+                    // url="http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}" // satellite
+                    url="http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}" // terrain
+                    maxZoom={20}
+                    subdomains={["mt0", "mt1", "mt2", "mt3"]}
+                />
 
-    {/* Okno z informacjami */}
-        {selected && (
-            <InfoWindow position={{ lat: selected.lat, lng: selected.lon }}
-                onCloseClick={() => { setSelected(null); }}
-            >
-                <div>
-                    <h2>{selected.name}</h2>
-                    <p>{selected.description}</p>
-                </div>
-            </InfoWindow>
-        )}
-    </GoogleMap>
-    );
-                }
+                {data.map((item) => (
+                    <Marker position={[parseFloat(item.lat),parseFloat(item.lon)]} icon={customIcon} key={item.id}>
+                        {console.log([parseFloat(item.lat),parseFloat(item.lon)])}
+                        <Popup>{item.description}</Popup>
+                    </Marker>
+                ))}
 
-const WrappedMap = withScriptjs(withGoogleMap(Map));
+            </MapContainer>
 
-// const MapBox = ({data}) =>{
-const MapBox = ({}) =>{
-    return (
-        <div style={{ width:"100vw", height:"100vh"}}>
-            {/* {data.map((item, i) => (
-                <div key={i}>
-                    <p>
-                        {item.id} {item.name} {item.description} {item.category} {item.lat} {item.lon}
-                    </p>
-                </div>
-            ))} */}
-            <WrappedMap
-                googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${
-                    process.env.REACT_APP_GOOGLE_KEY // Tu klucz do API z pliku .env.local
-                }`}
-                loadingElement={<div style={{ height: "100%" }} />}
-                containerElement={<div style={{ height: "100%" }} />}
-                mapElement={<div style={{ height: "100%" }} />}
-            />
         </div>
     )
 }
