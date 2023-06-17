@@ -1,9 +1,10 @@
 import React from 'react';
 
-const CategoryList = ({ selectedCategories, onCategoryChange, selectedPrice, onPriceChange }) => {
-  const categories = ['city', 'beach', 'castle'];
+const CategoryList = ({ selectedCategories, onCategoryChange, selectedPrice, onPriceChange, selectedCongestions, onCongestionsChange}) => {
 
+  const categories = ['city', 'beach', 'castle'];
   const prices = ['low', 'medium', 'high'];
+  const congestions = ['less crowded','moderate','crowded'];
 
   const handleCategoryChange = (category) => {
     onCategoryChange(category);
@@ -13,6 +14,11 @@ const CategoryList = ({ selectedCategories, onCategoryChange, selectedPrice, onP
   const handlePriceChange = (price) => {
     onPriceChange(price);
     console.log(selectedPrice);
+  };
+
+  const handleCongestionsChange = (congestions) => {
+    onCongestionsChange(congestions);
+    console.log(selectedCongestions);
   };
 
   return (
@@ -47,6 +53,22 @@ const CategoryList = ({ selectedCategories, onCategoryChange, selectedPrice, onP
             onChange={() => handlePriceChange(price)}
           />
           <label htmlFor={price}>{price}</label>
+        </div>
+      ))}
+
+      <h4>Congestions:</h4>
+      {congestions.map((congestion, index) => (
+        <div key={index} className='listDiv'>
+          <input
+            className='congestionInput'
+            type="checkbox"
+            id={congestion}
+            name="category"
+            value={congestion}
+            checked={selectedCongestions.includes(congestion)}
+            onChange={() => handleCongestionsChange(congestion)}
+          />
+          <label htmlFor={congestion}>{congestion}</label>
         </div>
       ))}
     </div>

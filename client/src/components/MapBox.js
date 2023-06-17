@@ -6,11 +6,10 @@ import { Icon } from "leaflet";
 
 // create custom icon
 const customIcon = new Icon({
-    // iconUrl: "https://cdn-icons-png.flaticon.com/512/447/447031.png",
     iconUrl: require("../icons/placeholder.png"),
-    iconSize: [38, 38] // size of the icon
+    iconSize: [38, 38],
+    iconAnchor: [19,40]
   });
-  
 
 const MapBox = ({data}) =>{
     return (
@@ -33,10 +32,11 @@ const MapBox = ({data}) =>{
                 />
 
                 {data.map((item) => (
-                    <Marker position={[parseFloat(item.lat),parseFloat(item.lon)]} icon={customIcon} key={item.id}>
-                        {console.log([parseFloat(item.lat),parseFloat(item.lon)])}
-                        <Popup>{item.description}</Popup>
-                    </Marker>
+                        
+                        <Marker position={[parseFloat(item.lat),parseFloat(item.lon)]} icon={customIcon} key={item.id}>
+                            {console.log([parseFloat(item.lat),parseFloat(item.lon)])}
+                            <Popup>{item.description}</Popup>
+                        </Marker>
                 ))}
 
             </MapContainer>

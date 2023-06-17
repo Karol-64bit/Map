@@ -16,8 +16,6 @@ app.get("/", (req, res, next) => {
   res.json({"message":"Ok"})
 });
 
-
-
 // API endpoints
 
 app.get("/api/places", (req, res, next) => {
