@@ -2,23 +2,20 @@ import React from 'react';
 
 const CategoryList = ({ selectedCategories, onCategoryChange, selectedPrice, onPriceChange, selectedCongestions, onCongestionsChange}) => {
 
-  const categories = ['city', 'beach', 'castle'];
+  const categories = ['city', 'beach', 'castle','park','mountain'];
   const prices = ['low', 'medium', 'high'];
   const congestions = ['less crowded','moderate','crowded'];
 
   const handleCategoryChange = (category) => {
     onCategoryChange(category);
-    console.log(selectedCategories);
   };
 
   const handlePriceChange = (price) => {
     onPriceChange(price);
-    console.log(selectedPrice);
   };
 
   const handleCongestionsChange = (congestions) => {
     onCongestionsChange(congestions);
-    console.log(selectedCongestions);
   };
 
   return (
