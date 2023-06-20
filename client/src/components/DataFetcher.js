@@ -40,13 +40,13 @@ const DataFetcher = ({
         const jsonData = await response.json();
         console.log("okokok");
         setData(jsonData.data);
-        console.log("ok");
+        console.log(data);
       } catch (error) {
         console.error("Błąd pobierania danych z API:", error);
       }
     };
 
-    if (selectedCategories.length > 0 || selectedPrice.length >0 || selectedCongestions.length > 0) {
+    if (selectedCategories.length > 0 || selectedPrice.length > 0 || selectedCongestions.length > 0) {
       fetchData();
     } else {
       setData([]);
