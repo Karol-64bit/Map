@@ -8,7 +8,9 @@ import { Icon } from "leaflet";
 const customIcon = new Icon({
     // iconUrl: "https://cdn-icons-png.flaticon.com/512/447/447031.png",
     iconUrl: require("../icons/placeholder.png"),
-    iconSize: [38, 38] // size of the icon
+    iconSize: [40, 40], // size of the icon
+    iconAnchor: [20, 40], // point of the icon which will correspond to marker's location
+    popupAnchor: [0, -40], // point from which the popup should open relative to the iconAnchor
   });
   
 
@@ -33,10 +35,10 @@ const MapBox = ({data}) =>{
                 />
 
                 {data.map((item) => (
-                    <Marker position={[parseFloat(item.lat),parseFloat(item.lon)]} icon={customIcon} key={item.id}>
-                        {console.log([parseFloat(item.lat),parseFloat(item.lon)])}
-                        <Popup>{item.description}</Popup>
-                    </Marker>
+                        <Marker position={[parseFloat(item.lat),parseFloat(item.lon)]} icon={customIcon} key={item.id} >
+                            {console.log([parseFloat(item.lat),parseFloat(item.lon)])}
+                            <Popup>{item.description}</Popup>
+                        </Marker>
                 ))}
 
             </MapContainer>
