@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
 .leaflet-container {
     height: 100%;
     width: 100%;
@@ -17,47 +19,74 @@
 .mapBoxDiv {
     height: 100vh;
     width: 100%;
-    background-color: darkgray;
+    background-color: #EEE;
 }
 
 .categoryDiv{
     width: 250px;
     height: 100vh;
-    background-color: rgb(255, 255, 255);
-    padding: 10px;
-    align-items:center;
-    flex-direction:row;
-    align-items: flex-start;
-    margin-bottom: 20px;
-    border-right: 5px solid #000;
+    font-family: 'Montserrat', sans-serif;
+    border-right: 1px solid #000;
+    user-select: none;
 }
 
 .categoryDiv h2 {
     margin-bottom: 10px;
     color: #333;
-    padding-left: 10px;
+    border-bottom: 1px solid #000;
+    padding: 10px;
+}
+
+.categoryDiv h4 {
+    padding: 10px;
+    color: #333;
 }
   
 .listDiv {
     display: flex;
-    align-items: center;
-    margin-bottom: 5px;
+    text-transform: capitalize;
 }
-  
+
+.categoryInput:hover + label,
+.priceInput:hover + label,
+.congestionInput:hover + label{
+    background-color: #EEE;
+}
+
 .categoryInput,
-.priceInput{
-    margin-right: 5px;
+.priceInput,
+.congestionInput{
+    display: none;
+}
+
+.categoryInput + label,
+.priceInput + label,
+.congestionInput + label{
+    display: inline-block;
+    letter-spacing: 4px;
+    text-align: center;
+    padding: 10px 40px;
+    margin: 10px;
+    border-radius: 10px;
+    color: #000;
+    border: 1.5px solid #000;
+    cursor: pointer;
 }
 
 .categoryInput:checked + label,
-.priceInput:checked + label{
-    font-weight: bold;
+.priceInput:checked + label,
+.congestionInput:checked + label{
+    background-color: #CCC;
 }
-  
-.categoryInput:checked + label {
-    font-weight: bold;
-}
-  
-.label {
+
+label {
     color: #555;
+    cursor: pointer;
 }
+
+.popUpBox{
+    text-align:center;
+    align-items: center;
+}
+
+  
