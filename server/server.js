@@ -29,139 +29,50 @@ app.get("/", (req, res, next) => {
 // API endpoints
 
 
-// app.get("/api/category/:categories", (req, res, next) => {
-//   var categories = req.params.categories.split(",");
-
-//   var placeholders = categories.map(() => "?").join(",");
-
-//   var sql = "SELECT * FROM places WHERE category IN (" + placeholders + ")";
-//   var params = categories;
-
-//   console.log("1");
-//   console.log(sql);
-//   console.log(params);
-
-//   db.all(sql, params, (err, rows) => {
-//     if (err) {
-//       res.status(400).json({ "error": err.message });
-//       return;
-//     }
-//     res.json({
-//       "message": "success",
-//       "data": rows
-//     });
-//   });
-// });
-
-// app.get("/api/categoryandprice/:categories/:price", (req, res, next) => {
-//   var categories = req.params.categories.split(",");
-//   var price = req.params.price;
-
-//   var placeholders = categories.map(() => "?").join(",");
-  
-//   var sql = "SELECT * FROM places WHERE category IN (" + placeholders + ")";
-//   var params = categories;
-
-//   sql += " AND price = ?";
-//   params.push(price);
-
-//   console.log("2");
-//   console.log(sql);
-//   console.log(params);
-  
-//   db.all(sql, params, (err, rows) => {
-//     if (err) {
-//       res.status(400).json({ "error": err.message });
-//       return;
-//     }
-//     res.json({
-//       "message": "success",
-//       "data": rows
-//     });
-//   });
-// });
-
-app.get("/api/test/:categories/:price/:congestions", (req, res, next) => {
-  console.log("api work")
-  var categories = req.params.categories.split(",");
-  var price = req.params.price.split(",");;
-  var congestions = req.params.congestions.split(",");
-
-  var categoryPlaceholders = categories.map(() => "?").join(",");
-  var pricePlaceholders = price.map(() => "?").join(",");
-  var congestionsPlaceholders = congestions.map(() => "?").join(",");
-  
-
-  var sql = "SELECT * FROM places";
-
-  var params = [];
-
-  if (categories.length > 0) {
-    sql += " WHERE category IN (" + categoryPlaceholders + ")";
-    params = params.concat(categories);
-  }
-
-  if (price.length > 0) {
-    sql +=
-      (params.length > 0 ? " AND" : " WHERE") +
-      " price IN (" +
-      pricePlaceholders +
-      ")";
-    params = params.concat(price);
-  }
-
-  if (congestions.length > 0) {
-    sql +=
-      (params.length > 0 ? " AND" : " WHERE") +
-      " congestion IN (" +
-      congestionsPlaceholders +
-      ")";
-    params = params.concat(congestions);
-  }
-  console.log("2");
-  console.log(sql);
-  console.log(params);
-
-  db.all(sql, params, (err, rows) => {
-    if (err) {
-      res.status(400).json({ error: err.message });
-      return;
-    }
-    res.json({
-      message: "success",
-      data: rows,
-    });
-  });
-});
-
-
-app.get("/api/test2/:request", (req, res, next) => {
+app.get("/api/locations", (req, res, next) => {
   console.log("api work");
-  var request = req.params.request
 
-  var sql = "SELECT * FROM places ";
-  sql +=request;
-  var params = [];
+
+  let conditions = [];
+
+  console.log(req.query.category);
+  console.log(req.query.price);
+  console.log(req.query.congestion);
+
+  if (req.query.category) {
+
+    conditions.push(`category IN (${req.query.category})`);
+  }
+
+  if (req.query.price) {
+    conditions.push(`price IN (${req.query.price})`);
+  }
+
+  if (req.query.congestion) {
+    conditions.push(`congestion IN (${req.query.congestion})`);
+  }
+
+  let sql = "SELECT * FROM places";
+
+  if (conditions.length > 0) {
+    sql += " WHERE " + conditions.join(" AND ");
+  }
 
   console.log(sql);
-  // console.log(params);
+  console.log(req.query.params);
 
   db.all(sql, (err, rows) => {
     if (err) {
       res.status(400).json({ error: err.message });
       return;
     }
-    console.log(rows)
+
     res.json({
       message: "success",
       data: rows,
     });
   });
 });
-
-
-
-
 
 
 // Default response for any other request

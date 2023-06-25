@@ -20,8 +20,9 @@ const CategoryList = ({ selectedCategories, onCategoryChange, selectedPrice, onP
 
   return (
     <div className='categoryDiv'>
-      <h2>Category:</h2>
-      <h4>Type of place:</h4>
+      <h2>📚 Category</h2>
+      
+      <h4>🚀 Type of place</h4>
       {categories.map((category, index) => (
         <div key={index} className='listDiv'>
           <input
@@ -37,7 +38,7 @@ const CategoryList = ({ selectedCategories, onCategoryChange, selectedPrice, onP
         </div>
       ))}
 
-      <h4>Prices:</h4>
+      <h4>💰 Prices</h4>
       {prices.map((price, index) => (
         <div key={index} className='listDiv'>
           <input
@@ -53,7 +54,7 @@ const CategoryList = ({ selectedCategories, onCategoryChange, selectedPrice, onP
         </div>
       ))}
 
-      <h4>Congestions:</h4>
+      <h4>👨‍👩‍👧‍👦 Congestions</h4>
       {congestions.map((congestion, index) => (
         <div key={index} className='listDiv'>
           <input
