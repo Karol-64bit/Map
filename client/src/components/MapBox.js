@@ -67,13 +67,16 @@ const MapBox = ({ data }) => {
               <Popup>
                 <div className="popUpBox">
                   <h3>{item.name}</h3>
-                  {item.description}
+                  <p>{item.description}</p>
+                  <button>
+                    Navigate
+                  </button>
                   <button
                     onClick={() => {
                       findInGoogle(item.name)
                     }}
                   >
-                    Find in google
+                    Search on google
                   </button>
                 </div>
               </Popup>

@@ -31,6 +31,7 @@
 }
 
 .categoryDiv h2 {
+    font-size: 30px;
     margin-bottom: 10px;
     color: #333;
     border-bottom: 1px solid #000;
@@ -38,6 +39,7 @@
 }
 
 .categoryDiv h4 {
+    font-size: 23px;
     padding: 10px;
     color: #333;
 }
@@ -82,11 +84,40 @@
 label {
     color: #555;
     cursor: pointer;
+    font-size: 18px;
 }
 
 .popUpBox{
     text-align:center;
-    align-items: center;
+    font-family: 'Montserrat', sans-serif;
 }
 
-  
+.popUpBox h3{
+    color: #333;
+    border-bottom: 1px solid #000;
+    font-size: 20px;
+    padding-bottom: 5px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+}
+
+.popUpBox p{
+    color: #333;
+    font-size: 17px;
+    padding: 0;
+    margin: 10px 0;
+}
+
+.popUpBox button{
+    padding: 10px 12px;
+    border-radius: 15px;
+    border: 1.7px solid #000;
+    background-color: #FFF;
+    color: #000;
+    cursor: pointer;
+    margin: 0 4px;
+}
+
+.popUpBox button:hover{
+    background-color: #CCC;
+}
