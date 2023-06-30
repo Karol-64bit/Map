@@ -12,7 +12,7 @@ app.listen(HTTP_PORT, () => {
     app.setMaxListeners(0);
 
 });
-
+app.use(express.json());
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -74,6 +74,92 @@ app.get("/api/locations", (req, res, next) => {
   });
 });
 
+
+
+// Middleware JWT token
+const authenticateToken = (req, res, next) => {
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1];
+
+  if (token == null) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+
+  jwt.verify(token, 'secret_key', (err, user) => {
+    if (err) {
+      console.error(err);
+      return res.status(403).json({ error: 'Forbidden' });
+    }
+
+    req.user = user;
+    next();
+  });
+};
+
+
+// Endpoint register
+app.post('/api/register', (req, res) => {
+  console.log(req.body)
+  const { username, password } = req.body;
+  db.get('SELECT * FROM users WHERE username = ?', [username], (err, row) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ error: 'Internal Server Error' });
+    }
+
+    if (row) {
+      return res.status(400).json({ error: 'Username already exists' });
+    }
+
+    // bcrypt.hash(password, 10, (err, hashedPassword) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).json({ error: 'Internal Server Error' });
+      }
+
+      db.run('INSERT INTO users (username, password) VALUES (?, ?)', [username, password], (err) => {
+        if (err) {
+          console.error(err);
+          return res.status(500).json({ error: 'Internal Server Error' });
+        }
+
+        res.status(201).json({ message: 'User registered successfully' });
+      });
+    });
+  });
+// });
+
+// Endpoint login
+app.post('/api/login', (req, res) => {
+  // console.log(req.query.username, req.query.password)
+  const { username, password } = req.body;
+
+  db.get('SELECT * FROM users WHERE username = ?', [username], (err, row) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ error: 'Internal Server Error' });
+    }
+
+    if (!row) {
+      return res.status(401).json({ error: 'Invalid credentials' });
+    }
+
+    bcrypt.compare(password, row.password, (err, result) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).json({ error: 'Internal Server Error' });
+      }
+
+      if (!result) {
+        return res.status(401).json({ error: 'Invalid credentials' });
+      }
+
+      const token = jwt.sign({ username: row.username }, 'secret_key');
+
+      res.status(200).json({ token });
+    });
+  });
+});
 
 // Default response for any other request
 app.use(function(req, res){

@@ -31,6 +31,7 @@
 }
 
 .categoryDiv h2 {
+    font-size: 30px;
     margin-bottom: 10px;
     color: #333;
     border-bottom: 1px solid #000;
@@ -86,7 +87,117 @@ label {
 
 .popUpBox{
     text-align:center;
-    align-items: center;
+    /* align-items: center; */
+    font-family: 'Montserrat', sans-serif;
 }
 
+.popUpBox h3{
+    color: #333;
+    border-bottom: 1px solid #000;
+    font-size: 20px;
+    padding-bottom: 5px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+}
+
+.popUpBox p {
+    color: #333;
+    font-size: 17px;
+    padding: 0;
+    margin: 10px 0;
+}
+
+.popUpBox button{
+    padding: 10px 12px;
+    border-radius: 15px;
+    border: 1.7px solid #000;
+    background-color: #FFF;
+    color: #000;
+    cursor: pointer;
+    margin: 0 4px;
+}
+
+.popUpBox button:hover{
+    background-color: #CCC;
+}
+
+.loginInfo{
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    background-color: #ffffff;
+    text-align: center;
+    padding: 10px 40px;
+    margin: 10px;
+    border-radius: 10px;
+    color: #000;
+    border: 1.5px solid #000;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.loginFormTrigger{
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.loginFormTrigger button {
+    background-color: #ffffff;
+    text-align: center;
+    padding: 10px 40px;
+    margin: 10px;
+    border-radius: 10px;
+    color: #000;
+    border: 1.5px solid #000;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.loginAndRegisterForm {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background-color: #fff;
+    padding: 10px 40px;
+    margin: 10px;
+    border-radius: 10px;
+    color: #000;
+    border: 1.5px solid #000;
+    font-family: 'Montserrat', sans-serif;
+  }
   
+  .loginAndRegisterForm label,
+  .loginAndRegisterForm input {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .loginAndRegisterForm input[type="text"],
+  .loginAndRegisterForm input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #000;
+    border-radius: 4px;
+  }
+  
+  .loginAndRegisterForm button {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    color: #000;
+    border: 1.5px solid #000;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+    margin: 10px;
+  }
+  
+  .loginAndRegisterForm button:hover {
+    background-color: #c0c0c0;
+  }
+

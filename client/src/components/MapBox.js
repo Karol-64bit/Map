@@ -16,9 +16,21 @@ const MapBox = ({ data }) => {
     return categoryIcons[category] || require("../icons/default.png");
   };
 
-  const findInGoogle = (searchQuery) => {
+  const searchOnGoogle = (searchQuery) => {
     console.log(searchQuery);
     const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(
+      searchQuery
+    )}`;
+    console.log(searchUrl);
+    const newWindow = window.open(searchUrl, "_blank");
+    if (newWindow) {
+      newWindow.opener = null;
+    }
+  };
+
+  const searchInNavigation = (searchQuery) => {
+    console.log(searchQuery);
+    const searchUrl = `https://www.google.com/maps/place/${encodeURIComponent(
       searchQuery
     )}`;
     console.log(searchUrl);
@@ -67,13 +79,19 @@ const MapBox = ({ data }) => {
               <Popup>
                 <div className="popUpBox">
                   <h3>{item.name}</h3>
-                  {item.description}
+                  <p>{item.description}</p>
                   <button
                     onClick={() => {
-                      findInGoogle(item.name)
+                      searchOnGoogle(item.name)
+                    }}>
+                    Search on google
+                  </button>
+                  <button
+                    onClick={() => {
+                      searchInNavigation(item.name)
                     }}
                   >
-                    Find in google
+                    Navigate
                   </button>
                 </div>
               </Popup>

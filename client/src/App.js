@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import DataFetcher from './components/DataFetcher';
 import CategoryList from './components/CategoryList';
 import MapBox from './components/MapBox';
+import LoginForm from './components/LoginForm';
 import './App.css'
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
 
   return (
     <div className='app'>
+      <LoginForm />
       <CategoryList 
         selectedCategories={selectedCategories} 
         onCategoryChange={handleCategoryChange} 
