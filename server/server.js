@@ -135,9 +135,36 @@ app.post('/api/register', (req, res) => {
 });
 
 // Endpoint login
+// app.post('/api/login', (req, res) => {
+//   console.log(req.query.username, req.query.password)
+//   console.log("ok");
+//   const { username, password } = req.body;
+
+//   db.get('SELECT * FROM users WHERE username = ?', [username], (err, row) => {
+//     if (err) {
+//       console.error(err);
+//       return res.status(500).json({ error: 'Internal Server Error' });
+//     }
+
+//     if (!row) {
+//       return res.status(401).json({ error: 'Invalid credentials' });
+//     }
+
+//       if (row.password==password){
+        
+//         const token = jwt.sign({ username: row.username }, "secret_key");
+//         res.status(200).json({ token });
+//       }
+//       else{
+//           res.status(401).json({ error: "Invalid credentials" });
+//       }
+
+
+//     });
+//   });
+
+// Endpoint login
 app.post('/api/login', (req, res) => {
-  console.log(req.query.username, req.query.password)
-  console.log("ok");
   const { username, password } = req.body;
 
   db.get('SELECT * FROM users WHERE username = ?', [username], (err, row) => {
@@ -150,18 +177,22 @@ app.post('/api/login', (req, res) => {
       return res.status(401).json({ error: 'Invalid credentials' });
     }
 
-      if (row.password==password){
-        
-        const token = jwt.sign({ username: row.username }, "secret_key");
-        res.status(200).json({ token });
-      }
-      else{
-          res.status(401).json({ error: "Invalid credentials" });
+    bcrypt.compare(password, row.password, (err, result) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).json({ error: 'Internal Server Error' });
       }
 
+      if (!result) {
+        return res.status(401).json({ error: 'Invalid credentials' });
+      }
 
+      const token = jwt.sign({ username: row.username }, 'secret_key');
+
+      res.status(200).json({ token });
     });
   });
+});
 
 // Default response for any other request
 app.use(function(req, res){
