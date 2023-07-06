@@ -166,10 +166,58 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
                     "low",
                     "less crowded"])
 
-                console.log("ok insert")
+                console.log("Successfully inserted into 'places' table")
+        
             }
-        });  
+        }); 
+        db.run(`CREATE TABLE users (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            username TEXT,
+            password TEXT 
+        )`, (err) => {
+            if (err) {
+                // Table already created
+                console.log("Table 'users' already exists")
+            } else {
+                var insertAdmin = 'INSERT INTO users (username, password) VALUES (?,?)'
+                db.run(insertAdmin, [
+                    "admin",
+                    "$2a$10$J5kFP4DPsdXGXMfdXF4iyu.nvAmowlvKQCRcWklx5CwAUpnfFeNom"
+                ])
+                console.log("Successfully created 'users' table and inserted admin record")
+            }
+        });   
+        db.run(`CREATE TABLE ratings (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            type TEXT,
+            user_id INTEGER,
+            plase_id INTEGER
+        )`, (err) => {
+            if (err) {
+                // Table already created
+                console.log("Table 'ratings' already exists")
+            } else {
+                console.log("Successfully created 'ratings' table")
+            }
+        });
+
+        db.run(`CREATE TABLE opinions (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            content TEXT,
+            user_name TEXT,
+            user_id INTEGER,
+            plase_id INTEGER
+        )`, (err) => {
+            if (err) {
+                // Table already created
+                console.log("Table 'opinions' already exists")
+                // console.log(err)
+            } else {
+                console.log("Successfully created 'opinions' table")
+            }
+        });
     }
 });
-db.run('CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT)');
+
+
 module.exports = db

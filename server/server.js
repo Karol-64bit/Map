@@ -135,35 +135,6 @@ app.post('/api/register', (req, res) => {
 });
 
 // Endpoint login
-// app.post('/api/login', (req, res) => {
-//   console.log(req.query.username, req.query.password)
-//   console.log("ok");
-//   const { username, password } = req.body;
-
-//   db.get('SELECT * FROM users WHERE username = ?', [username], (err, row) => {
-//     if (err) {
-//       console.error(err);
-//       return res.status(500).json({ error: 'Internal Server Error' });
-//     }
-
-//     if (!row) {
-//       return res.status(401).json({ error: 'Invalid credentials' });
-//     }
-
-//       if (row.password==password){
-        
-//         const token = jwt.sign({ username: row.username }, "secret_key");
-//         res.status(200).json({ token });
-//       }
-//       else{
-//           res.status(401).json({ error: "Invalid credentials" });
-//       }
-
-
-//     });
-//   });
-
-// Endpoint login
 app.post('/api/login', (req, res) => {
   const { username, password } = req.body;
 
@@ -193,6 +164,37 @@ app.post('/api/login', (req, res) => {
     });
   });
 });
+
+
+//opinions
+app.get("/api/opinions", (req, res, next) => {
+  console.log("api work");
+
+  console.log(req.query.place);
+
+  const place_id = req.query.place
+
+  let sql = "SELECT * FROM opinion";
+
+  if (conditions.length > 0) {
+    sql += " WHERE place_id = " + place_id;
+  }
+
+  console.log(sql);
+
+  db.all(sql, (err, rows) => {
+    if (err) {
+      res.status(400).json({ error: err.message });
+      return;
+    }
+
+    res.json({
+      message: "success",
+      data: rows,
+    });
+  });
+});
+
 
 // Default response for any other request
 app.use(function(req, res){
