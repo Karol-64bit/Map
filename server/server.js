@@ -166,7 +166,7 @@ app.post('/api/login', (req, res) => {
 });
 
 
-//opinions
+//opinions ???
 app.get("/api/opinions", (req, res, next) => {
   console.log("api work");
 
@@ -194,6 +194,41 @@ app.get("/api/opinions", (req, res, next) => {
     });
   });
 });
+
+// Endpoint Add new location
+app.post('/api/newlocation', (req, res) => {
+  const {
+    name,
+    description,
+    lat,
+    lon,
+    category,
+    price,
+    congestion,
+  } = req.body;
+
+      db.run(
+        "INSERT INTO places (name, description, description_long, lat, lon, category, price, congestion) VALUES (?,?,?,?,?,?,?,?)",
+        [
+          name,
+          description,
+          "nothing",
+          lat,
+          lon,
+          category,
+          price,
+          congestion,
+        ],
+        (err) => {
+          if (err) {
+            console.error(err);
+            return res.status(500).json({ error: "Internal Server Error" });
+          }
+
+          res.status(201).json({ message: "User registered successfully" });
+        }
+      );
+    });
 
 
 // Default response for any other request

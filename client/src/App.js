@@ -3,7 +3,9 @@ import DataFetcher from './components/DataFetcher';
 import CategoryList from './components/CategoryList';
 import MapBox from './components/MapBox';
 import LoginForm from './components/LoginForm';
-import './App.css'
+
+
+import AdminPanel from './components/AdminPanel';
 
 function App() {
   const [selectedCategories, setSelectedCategories] = useState([]);
@@ -49,6 +51,8 @@ function App() {
         onCongestionsChange={handleCongestionsChange}
       />
       <MapBox data={data} />
+
+      <AdminPanel />
     </div>
   );
 }
