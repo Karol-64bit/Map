@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
+import LocationsForm from "./LocationsForm";
 import './AdminPanel.css'
+
 
 const AdminPanel = () => {
   const [open, setOpen] = useState("addLocationFormView");
@@ -39,7 +41,7 @@ const AdminPanel = () => {
     }
   };
 
-  if (open=="addLocationFormView") {
+  if (open==="addLocationFormView") {
     return (
       <div className="addLocationForm">
         <div className="buttonGroup">
@@ -112,14 +114,14 @@ const AdminPanel = () => {
             onChange={handleChange}
           />
 
-          <button type="submit">Zarejestruj</button>
+          <button type="submit">Add new location</button>
         </form>
       </div>
     );
   }
 
 
-  if(open=="manageLocationsView"){
+  if(open==="manageLocationsView"){
     return (
       <div className="addLocationForm">
         <div className="buttonGroup">
@@ -148,77 +150,11 @@ const AdminPanel = () => {
             Manage opinions
           </button>
         </div>
-        <h2>Register</h2>
-        <form onSubmit={handleAddLocation} className="form">
-          <label htmlFor="name">Name:</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-          />
 
-          <label htmlFor="description">Description:</label>
-          <input
-            type="text"
-            id="description"
-            name="description"
-            value={formData.description}
-            onChange={handleChange}
-          />
-
-          <label htmlFor="lat">Latitude:</label>
-          <input
-            type="text"
-            id="lat"
-            name="lat"
-            value={formData.lat}
-            onChange={handleChange}
-          />
-
-          <label htmlFor="lon">Longitude:</label>
-          <input
-            type="text"
-            id="lon"
-            name="lon"
-            value={formData.lon}
-            onChange={handleChange}
-          />
-
-          <label htmlFor="category">Category:</label>
-          <input
-            type="text"
-            id="category"
-            name="category"
-            value={formData.category}
-            onChange={handleChange}
-          />
-
-          <label htmlFor="price">Price:</label>
-          <input
-            type="text"
-            id="price"
-            name="price"
-            value={formData.price}
-            onChange={handleChange}
-          />
-
-          <label htmlFor="congestion">Congestion:</label>
-          <input
-            type="text"
-            id="congestion"
-            name="congestion"
-            value={formData.congestion}
-            onChange={handleChange}
-          />
-
-          <button type="submit">Zarejestruj</button>
-        </form>
+            <LocationsForm />
       </div>
     );
   }
-
 
 };
 

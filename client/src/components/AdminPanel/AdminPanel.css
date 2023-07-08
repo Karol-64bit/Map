@@ -97,3 +97,47 @@
 }
 
 
+/* Manage locations panel */
+
+.locationsContainer {
+  max-height: 50vh;
+  overflow-y: auto;
+  padding-right: 20px;
+}
+
+.locationsTable {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.locationsTable th,
+.locationsTable td {
+  border: 1px solid #ccc;
+  padding: 8px;
+}
+
+.locationsTable th {
+  background-color: #f2f2f2;
+  text-align: left;
+}
+
+.locationsTable td:last-child {
+  text-align: right;
+}
+
+.locationsTable thead {
+  position: sticky;
+  top: 0;
+  background-color: #f2f2f2;
+  z-index: 1;
+}
+
+.locationsTable tbody {
+  overflow-y: auto; 
+  max-height: 300px;
+}
+
+.locationsTable button {
+  margin-left: 10px;
+}
+

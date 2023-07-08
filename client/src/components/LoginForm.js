@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import AdminPanel from './AdminPanel/AdminPanel';
 import axios from 'axios';
 import "../App.css";
 
@@ -8,6 +9,7 @@ const LoginForm = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [showRegistrationForm, setShowRegistrationForm] = useState(false);
+    const [showAdminPanel, setShowAdminPanel] = useState(false);
 
     const api = axios.create({
         baseURL: 'http://localhost:5001',
@@ -85,14 +87,29 @@ const LoginForm = () => {
 
   //  RENDER
   if (loggedIn) {
-    console.log("username:" + username)
     return (
-      <div className="loginInfo">
-        Witaj, {username}!
+      <div>
+        {username === "admin" ? (
+          <div>
+            <div className="loginInfo">
+              Witaj, {username}!
+            </div>
+  
+            <div className="adminFormTrigger">
+              <button onClick={() => { setShowAdminPanel(!showAdminPanel) }}>Show admin panel</button>
+            </div>
+            {showAdminPanel && <AdminPanel />}
+          </div>
+        ) : (
+          <div className="loginInfo">
+            Witaj, {username}!
+          </div>
+        )}
       </div>
     );
   }
 
+  
   if (showLoginForm) {
     return (
       <div className="loginAndRegisterForm">

@@ -145,6 +145,26 @@ label {
     font-family: 'Montserrat', sans-serif;
 }
 
+.adminFormTrigger{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.adminFormTrigger button {
+    background-color: #ffffff;
+    text-align: center;
+    padding: 10px 40px;
+    margin: 10px;
+    border-radius: 10px;
+    color: #000;
+    border: 1.5px solid #000;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+}
+
 .loginFormTrigger button {
     background-color: #ffffff;
     text-align: center;

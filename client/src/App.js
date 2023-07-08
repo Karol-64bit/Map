@@ -5,7 +5,7 @@ import MapBox from './components/MapBox';
 import LoginForm from './components/LoginForm';
 
 
-import AdminPanel from './components/AdminPanel';
+import AdminPanel from './components/AdminPanel/AdminPanel';
 
 function App() {
   const [selectedCategories, setSelectedCategories] = useState([]);
@@ -52,7 +52,7 @@ function App() {
       />
       <MapBox data={data} />
 
-      <AdminPanel />
+      {/* <AdminPanel /> */}
     </div>
   );
 }

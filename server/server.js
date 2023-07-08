@@ -31,6 +31,7 @@ app.get("/", (req, res, next) => {
 // API endpoints
 
 
+// Endpoint locations
 app.get("/api/locations", (req, res, next) => {
   console.log("api work");
 
@@ -207,28 +208,100 @@ app.post('/api/newlocation', (req, res) => {
     congestion,
   } = req.body;
 
-      db.run(
-        "INSERT INTO places (name, description, description_long, lat, lon, category, price, congestion) VALUES (?,?,?,?,?,?,?,?)",
-        [
-          name,
-          description,
-          "nothing",
-          lat,
-          lon,
-          category,
-          price,
-          congestion,
-        ],
-        (err) => {
-          if (err) {
-            console.error(err);
-            return res.status(500).json({ error: "Internal Server Error" });
-          }
+  db.run(
+    "INSERT INTO places (name, description, description_long, lat, lon, category, price, congestion) VALUES (?,?,?,?,?,?,?,?)",
+    [
+      name,
+      description,
+      "nothing",
+      lat,
+      lon,
+      category,
+      price,
+      congestion,
+    ],
+    (err) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).json({ error: "Internal Server Error" });
+      }
 
-          res.status(201).json({ message: "User registered successfully" });
-        }
-      );
+      res.status(201).json({ message: "User registered successfully" });
+    }
+  );
+});
+
+
+// Endpoint all locations
+app.get("/api/alllocations", (req, res, next) => {
+  console.log("api: all locations");
+
+  let sql = "SELECT * FROM places";
+
+  console.log(sql);
+
+
+  db.all(sql, (err, rows) => {
+    if (err) {
+      res.status(400).json({ error: err.message });
+      return;
+    }
+
+    res.json({
+      message: "success",
+      data: rows,
     });
+  });
+});
+
+// Endpoint delete location
+app.delete("/api/location/:id", (req, res, next) => {
+  console.log("api: delete location");
+
+  const id = req.params.id;
+
+  let sql = "DELETE FROM places WHERE id = ?";
+
+  db.run(sql, id, (err) => {
+    if (err) {
+      res.status(400).json({ error: err.message });
+      return;
+    }
+
+    res.json({
+      message: "success",
+      data: id,
+    });
+  });
+});
+
+
+// Endpoint edit location
+app.put("/api/location/:id", (req, res, next) => {
+  console.log("api: edit location");
+
+  const id = req.params.id;
+  const { name, description, lat, lon, category, price, congestion } = req.body;
+
+  let sql = `
+    UPDATE places 
+    SET name = ?, description = ?,description_long = ?, lat = ?, lon = ?, category = ?, price = ?, congestion = ?
+    WHERE id = ?
+  `;
+
+  db.run(sql, [name, description,"nothing", lat, lon, category, price, congestion, id], (err) => {
+    if (err) {
+      res.status(400).json({ error: err.message });
+      return;
+    }
+
+    res.json({
+      message: "success",
+      data: id,
+    });
+  });
+});
+
 
 
 // Default response for any other request
