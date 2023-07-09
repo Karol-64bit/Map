@@ -161,7 +161,7 @@ app.post('/api/login', (req, res) => {
 
       const token = jwt.sign({ username: row.username }, 'secret_key');
 
-      res.status(200).json({ token });
+      res.status(200).json({ token, userId:row.id });
     });
   });
 });
@@ -175,11 +175,9 @@ app.get("/api/opinions", (req, res, next) => {
 
   const place_id = req.query.place
 
-  let sql = "SELECT * FROM opinion";
+  let sql = "SELECT * FROM opinions";
 
-  if (conditions.length > 0) {
-    sql += " WHERE place_id = " + place_id;
-  }
+  sql += " WHERE place_id = " + place_id;
 
   console.log(sql);
 

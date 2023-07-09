@@ -206,7 +206,7 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
             content TEXT,
             user_name TEXT,
             user_id INTEGER,
-            plase_id INTEGER
+            place_id INTEGER
         )`, (err) => {
             if (err) {
                 // Table already created

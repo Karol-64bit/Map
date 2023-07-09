@@ -221,3 +221,20 @@ label {
     background-color: #c0c0c0;
   }
 
+  .headerDiv {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .headerDiv h2 {
+    margin: 0;
+  }
+  
+  .closeButton {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }
+
+  /* OPINIONS BOX */

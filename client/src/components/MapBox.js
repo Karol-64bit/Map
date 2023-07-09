@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import "leaflet/dist/leaflet.css";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { Icon } from "leaflet";
+import OpinionsBox from "./OpinionsBox";
 import "../App.css";
-
 
 const MapBox = ({ data }) => {
   const categoryIcons = {
@@ -42,7 +42,11 @@ const MapBox = ({ data }) => {
     }
   };
 
+  const [selectedOpinionId, setSelectedOpinionId] = useState(null);
 
+  const handleOpinionsClick = (id) => {
+    setSelectedOpinionId(id);
+  };
 
   return (
     <div className="mapBoxDiv">
@@ -64,7 +68,6 @@ const MapBox = ({ data }) => {
 
         {data.map((item) => {
           const iconUrl = getIconUrl(item.category);
-          console.log(item.lon)
 
           return (
             <Marker
@@ -82,18 +85,16 @@ const MapBox = ({ data }) => {
                 <div className="popUpBox">
                   <h3>{item.name}</h3>
                   <p>{item.description}</p>
-                  <button
-                    onClick={() => {
-                      searchOnGoogle(item.name)
-                    }}>
+                  <button onClick={() => searchOnGoogle(item.name)}>
                     Search on google
                   </button>
-                  <button
-                    onClick={() => {
-                      searchInNavigation(item.name)
-                    }}
-                  >
+                  <button onClick={() => searchInNavigation(item.name)}>
                     Navigate
+                  </button>
+                  <button
+                    onClick={() => handleOpinionsClick(item.id)}
+                  >
+                    Opinions
                   </button>
                 </div>
               </Popup>
@@ -101,6 +102,7 @@ const MapBox = ({ data }) => {
           );
         })}
       </MapContainer>
+      {selectedOpinionId && <OpinionsBox locationId={selectedOpinionId} />}
     </div>
   );
 };
