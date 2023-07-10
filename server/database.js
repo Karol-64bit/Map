@@ -187,19 +187,6 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
                 console.log("Successfully created 'users' table and inserted admin record")
             }
         });   
-        db.run(`CREATE TABLE ratings (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            type TEXT,
-            user_id INTEGER,
-            plase_id INTEGER
-        )`, (err) => {
-            if (err) {
-                // Table already created
-                console.log("Table 'ratings' already exists")
-            } else {
-                console.log("Successfully created 'ratings' table")
-            }
-        });
 
         db.run(`CREATE TABLE opinions (
             id INTEGER PRIMARY KEY AUTOINCREMENT,

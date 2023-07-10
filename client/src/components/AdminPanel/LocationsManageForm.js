@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const LocationsForm = () => {
+const LocationsManageForm = () => {
   const [data, setData] = useState([]);
   const [editmode, setEditMode] = useState(false); 
   const [editingRecord, setEditingRecord] = useState(0);
@@ -70,6 +70,7 @@ const LocationsForm = () => {
     try {
       const response = await api.put("api/location/"+editingRecord, formData);
       console.log("ok")
+      fetchAllLocation();
       setEditMode(false);
     } catch (error) {
       console.log("nie ok");
@@ -212,4 +213,4 @@ const LocationsForm = () => {
 
 };
 
-export default LocationsForm;
+export default LocationsManageForm;

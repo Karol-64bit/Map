@@ -102,7 +102,9 @@ const MapBox = ({ data }) => {
           );
         })}
       </MapContainer>
-      {selectedOpinionId && <OpinionsBox locationId={selectedOpinionId} />}
+      {selectedOpinionId && (
+        <OpinionsBox locationId={selectedOpinionId} onClose={() => setSelectedOpinionId(null)} />
+      )}
     </div>
   );
 };

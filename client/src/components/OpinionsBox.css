@@ -1,0 +1,25 @@
+.opinionsBox {
+    position: fixed;
+    left: 50%;
+    bottom: 30px;
+    transform: translateX(-50%);
+    z-index: 9999;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #ffffff;
+    margin: 10px;
+    border-radius: 10px;
+    padding: 10px 40px;
+    color: #000;
+    border: 1.5px solid #000;
+  }
+
+.headerWithLine{
+    border-top: 1px solid black;
+}
+
+.closeButton {
+    float:right;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }

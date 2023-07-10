@@ -28,7 +28,7 @@ app.get("/", (req, res, next) => {
   res.json({"message":"Ok"})
 });
 
-// API endpoints
+// API endpoints // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // 
 
 
 // Endpoint locations
@@ -167,7 +167,7 @@ app.post('/api/login', (req, res) => {
 });
 
 
-//opinions ???
+//  Endpoint opinions of one location
 app.get("/api/opinions", (req, res, next) => {
   console.log("api work");
 
@@ -193,6 +193,89 @@ app.get("/api/opinions", (req, res, next) => {
     });
   });
 });
+
+//  Endpoint opinions of all location
+app.get("/api/allopinions", (req, res, next) => {
+  console.log("api work");
+
+  console.log(req.query.place);
+
+  let sql = `
+  SELECT o.*, u.username AS user_name, l.name AS location_name
+  FROM opinions o
+  LEFT JOIN users u ON o.user_id = u.id
+  LEFT JOIN places l ON o.place_id = l.id
+`;
+
+  console.log(sql);
+
+  db.all(sql, (err, rows) => {
+    if (err) {
+      res.status(400).json({ error: err.message });
+      return;
+    }
+
+    res.json({
+      message: "success",
+      data: rows,
+    });
+  });
+});
+
+// Endpoints add new opinion
+app.post('/api/opinions', (req, res) => {
+  const { content, user_name, user_id, place_id } = req.body;
+
+  const sql = 'INSERT INTO opinions (content, user_name, user_id, place_id) VALUES (?, ?, ?, ?)';
+  const values = [content, user_name, user_id, place_id];
+  console.log(values);
+  db.run(sql, values, function (err) {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ error: 'Internal Server Error' });
+    }
+
+    res.json({
+      message: 'Opinion added successfully',
+      opinionId: this.lastID,
+    });
+  });
+});
+
+// Endpoint delete opinion
+app.delete("/api/opinions/:id", (req, res, next) => {
+  console.log("deleting");
+  const opinionId = req.params.id;
+
+  const sql = "DELETE FROM opinions WHERE id = ?";
+
+  db.run(sql, [opinionId], (err) => {
+    if (err) {
+      res.status(500).json({ error: err.message });
+      return;
+    }
+
+    res.json({ message: "Opinion deleted successfully" });
+  });
+});
+
+// Endpoint edit opinion
+app.put("/api/opinions/:id", (req, res, next) => {
+  const opinionId = req.params.id;
+  const { content } = req.body;
+
+  const sql = "UPDATE opinions SET content = ? WHERE id = ?";
+
+  db.run(sql, [content, opinionId], (err) => {
+    if (err) {
+      res.status(500).json({ error: err.message });
+      return;
+    }
+
+    res.json({ message: "Opinion updated successfully" });
+  });
+});
+
 
 // Endpoint Add new location
 app.post('/api/newlocation', (req, res) => {
@@ -299,6 +382,27 @@ app.put("/api/location/:id", (req, res, next) => {
     });
   });
 });
+
+
+// Endpoint category
+app.get("/api/categories", (req, res, next) => {
+  let sql = "SELECT DISTINCT category FROM places";
+
+  db.all(sql, (err, rows) => {
+    if (err) {
+      res.status(400).json({ error: err.message });
+      return;
+    }
+
+    const categories = rows.map((row) => row.category);
+
+    res.json({
+      message: "success",
+      data: categories,
+    });
+  });
+});
+
 
 
 

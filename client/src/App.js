@@ -5,8 +5,6 @@ import MapBox from './components/MapBox';
 import LoginForm from './components/LoginForm';
 
 
-import AdminPanel from './components/AdminPanel/AdminPanel';
-
 function App() {
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedPrice, setSelectedPrice] = useState([]);
