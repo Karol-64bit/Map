@@ -1,0 +1,143 @@
+.addLocationForm {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background-color: #fff;
+    padding: 10px 40px;
+    margin: 10px;
+    border-radius: 10px;
+    color: #000;
+    border: 1.5px solid #000;
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  /* .addLocationForm label,
+  .addLocationForm input {
+    display: block;
+    margin-bottom: 10px;
+  } */
+  
+  .addLocationForm input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #000;
+    border-radius: 4px;
+  }
+  
+  .addLocationForm button {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    /* color: #000; */
+    border: 1.5px solid #000;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+    margin: 10px;
+  }
+  
+.addLocationForm button:hover {
+    background-color: #c0c0c0;
+  }
+
+.unchecked {
+  flex: 1;
+  border: none;
+  padding: 10px;
+  font-size: 16px;
+  /* color: #fff; */
+  /* background-color: #333; */
+}
+
+.checked{
+  flex: 1;
+  border: none;
+  padding: 10px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #333;
+}
+
+
+.unchecked:hover {
+  flex: 1;
+
+  padding: 10px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #333;
+}
+
+.checked:hover{
+  flex: 1;
+
+  padding: 10px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #333;
+}
+
+
+  .buttonGroup {
+  display: flex;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+
+.buttonGroup button:first-child {
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+.buttonGroup button:last-child {
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+
+/* Manage locations panel */
+
+.locationsContainer {
+  max-height: 50vh;
+  overflow-y: auto;
+  padding-right: 20px;
+}
+
+.locationsTable {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.locationsTable th,
+.locationsTable td {
+  border: 1px solid #ccc;
+  padding: 8px;
+}
+
+.locationsTable th {
+  background-color: #f2f2f2;
+  text-align: left;
+}
+
+.locationsTable td:last-child {
+  text-align: right;
+}
+
+.locationsTable thead {
+  position: sticky;
+  top: 0;
+  background-color: #f2f2f2;
+  z-index: 1;
+}
+
+.locationsTable tbody {
+  overflow-y: auto; 
+  max-height: 300px;
+}
+
+.locationsTable button {
+  margin-left: 10px;
+}
+
