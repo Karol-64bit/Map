@@ -28,6 +28,7 @@
     font-family: 'Montserrat', sans-serif;
     border-right: 1px solid #000;
     user-select: none;
+    overflow-y: auto;
 }
 
 .categoryDiv h2 {
