@@ -14,6 +14,7 @@ const LocationsManageForm = () => {
     category: "",
     price: "",
     congestion: "",
+    image: "",
   });
 
   const api = axios.create({
@@ -60,6 +61,7 @@ const LocationsManageForm = () => {
         category: selectedRecord.category,
         price: selectedRecord.price,
         congestion: selectedRecord.congestion,
+        image: selectedRecord.image,
       });
     }
 
@@ -110,6 +112,7 @@ const LocationsManageForm = () => {
                 <th>Category</th>
                 <th>Price</th>
                 <th>Congestion</th>
+                <th>Image</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -123,6 +126,7 @@ const LocationsManageForm = () => {
                   <td>{item.category}</td>
                   <td>{item.price}</td>
                   <td>{item.congestion}</td>
+                  <td>{item.image}</td>
                   <td>
                     <button onClick={() => handleEdit(item.id)}>Edit</button>
                     <button onClick={() => handleDelete(item.id)}>Delete</button>
@@ -201,6 +205,15 @@ const LocationsManageForm = () => {
               id="congestion"
               name="congestion"
               value={formData.congestion}
+              onChange={handleChange}
+            />
+            
+            <label htmlFor="image">Image:</label>
+            <input
+              type="text"
+              id="image"
+              name="image"
+              value={formData.image}
               onChange={handleChange}
             />
           <button type="button" onClick={updateLocation}>Edit</button>

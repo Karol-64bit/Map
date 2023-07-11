@@ -87,6 +87,7 @@ const OpinionsManageForm = () => {
                 <th>User name</th>
                 <th>Location</th>
                 <th>Content</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>

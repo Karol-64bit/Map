@@ -287,10 +287,11 @@ app.post('/api/newlocation', (req, res) => {
     category,
     price,
     congestion,
+    image,
   } = req.body;
 
   db.run(
-    "INSERT INTO places (name, description, description_long, lat, lon, category, price, congestion) VALUES (?,?,?,?,?,?,?,?)",
+    "INSERT INTO places (name, description, description_long, lat, lon, category, price, congestion, image) VALUES (?,?,?,?,?,?,?,?,?)",
     [
       name,
       description,
@@ -300,6 +301,7 @@ app.post('/api/newlocation', (req, res) => {
       category,
       price,
       congestion,
+      image,
     ],
     (err) => {
       if (err) {
@@ -362,15 +364,15 @@ app.put("/api/location/:id", (req, res, next) => {
   console.log("api: edit location");
 
   const id = req.params.id;
-  const { name, description, lat, lon, category, price, congestion } = req.body;
+  const { name, description, lat, lon, category, price, congestion, image } = req.body;
 
   let sql = `
     UPDATE places 
-    SET name = ?, description = ?,description_long = ?, lat = ?, lon = ?, category = ?, price = ?, congestion = ?
+    SET name = ?, description = ?,description_long = ?, lat = ?, lon = ?, category = ?, price = ?, congestion = ?, image = ?
     WHERE id = ?
   `;
 
-  db.run(sql, [name, description,"nothing", lat, lon, category, price, congestion, id], (err) => {
+  db.run(sql, [name, description,"nothing", lat, lon, category, price, congestion,image, id], (err) => {
     if (err) {
       res.status(400).json({ error: err.message });
       return;

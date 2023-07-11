@@ -44,6 +44,7 @@ const CategoryList = ({ selectedCategories, onCategoryChange, selectedPrice, onP
     <div className='categoryDiv'>
       <h2>📚 Category</h2>
 
+      <div className='menuScroll'>
       <h4>🚀 Type of place</h4>
       {categories.map((category, index) => (
         <div key={index} className='listDiv'>
@@ -91,6 +92,29 @@ const CategoryList = ({ selectedCategories, onCategoryChange, selectedPrice, onP
           <label htmlFor={congestion}>{congestion}</label>
         </div>
       ))}
+      </div>
+
+
+      <button className='openMenuButton' onClick={
+        () => {
+          const menu = document.querySelector('.categoryDiv');
+          const buttonOpen = document.querySelector('.openMenuButton');
+          const buttonClose = document.querySelector('.closeMenuButton');
+          menu.style.position = 'relative';
+          buttonOpen.style.display = 'none';
+          buttonClose.style.display = 'block';
+        }
+      }>▶</button>
+      <button className='closeMenuButton' onClick={
+        () => {
+          const menu = document.querySelector('.categoryDiv');
+          const buttonClose = document.querySelector('.closeMenuButton');
+          const buttonOpen = document.querySelector('.openMenuButton');
+          menu.style.position = 'absolute';
+          buttonClose.style.display = 'none';
+          buttonOpen.style.display = 'block';
+        }
+      }>◀</button>
     </div>
   );
 }

@@ -18,15 +18,16 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
             lon text,
             category text,
             price text,
-            congestion text
+            congestion text,
+            image text
             )`,
         (err) => {
             if (err) {
                 // Table already created
-                console.log("Table already created")
+                console.log('Table "PLaces" already created')
             }else{
                 // Table just created, creating some rows
-                var insert = 'INSERT INTO places (name, description, description_long, lat, lon, category, price, congestion) VALUES (?,?,?,?,?,?,?,?)'
+                var insert = 'INSERT INTO places (name, description, description_long, lat, lon, category, price, congestion, image) VALUES (?,?,?,?,?,?,?,?,?)'
                 db.run(insert, [
                     "Wrocław",
                     "Is at the top of many lists of the most beautiful cities in Poland.",
@@ -35,7 +36,9 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
                     "17.03717151533756",
                     "city",
                     "low",
-                    "moderate"])
+                    "moderate",
+                    "https://i.ibb.co/BzTQ9Yj/day-background.jpg"
+                ])
                 db.run(insert, [
                     "Warsaw",
                     "This is the capital of Poland",
@@ -44,7 +47,8 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
                     "21.01381383487476",
                     "city",
                     "high",
-                    "crowded"])
+                    "crowded",
+                    "https://i.ibb.co/BzTQ9Yj/day-background.jpg"])
                 db.run(insert, [
                     "Gdańsk",
                     "This is a city in the northern part of Poland",
@@ -53,7 +57,8 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
                     "18.646080185092636",
                     "city",
                     "high",
-                    "moderate"])
+                    "moderate",
+                    "https://i.ibb.co/BzTQ9Yj/day-background.jpg"])
 
                 db.run(insert, [
                     "Hel",
@@ -63,7 +68,8 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
                     "18.800735916994903",
                     "beach",
                     "low",
-                    "crowded"])
+                    "crowded",
+                    "https://i.ibb.co/BzTQ9Yj/day-background.jpg"])
                 db.run(insert, [
                     "Świnoujście",
                     "The beach is among the cleanest and warmest in the country",
@@ -72,7 +78,8 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
                     "14.261116469196226",
                     "beach",
                     "medium",
-                    "crowded"])
+                    "crowded",
+                    "https://i.ibb.co/BzTQ9Yj/day-background.jpg"])
                 db.run(insert, [
                     "Kołobrzeg",
                     "one of the most popular beaches during the tourist season.",
@@ -81,7 +88,8 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
                     "15.593752401620906",
                     "beach",
                     "high",
-                    "crowded"])
+                    "crowded",
+                    "https://i.ibb.co/BzTQ9Yj/day-background.jpg"])
                 db.run(insert, [
                     "Malbork",
                     "Castle in Malbork",
@@ -90,7 +98,8 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
                     "19.028021402094723",
                     "castle",
                     "medium",
-                    "crowded"])
+                    "crowded",
+                    "https://i.ibb.co/BzTQ9Yj/day-background.jpg"])
                 db.run(insert, [
                     "Wawel",
                     "Castle in Cracow",
@@ -99,7 +108,8 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
                     "19.93471030013709",
                     "castle",
                     "low",
-                    "crowded"])
+                    "crowded",
+                    "https://i.ibb.co/BzTQ9Yj/day-background.jpg"])
                 db.run(insert, [
                     "Książ",
                     "Castle in Wałbrzych",
@@ -108,7 +118,8 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
                     "16.29181418267564",
                     "castle",
                     "high",
-                    "moderate"])
+                    "moderate",
+                    "https://i.ibb.co/BzTQ9Yj/day-background.jpg"])
                 
                 db.run(insert, [
                     "Gubałówka",
@@ -118,7 +129,8 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
                     "19.93700682809742",
                     "mountain",
                     "medium",
-                    "crowded"])
+                    "crowded",
+                    "https://i.ibb.co/BzTQ9Yj/day-background.jpg"])
                 db.run(insert, [
                     "Krościenko nad Dunajcem",
                     "It is one of the most famous tourist and summer resorts.",
@@ -127,7 +139,8 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
                     "20.427335577793727",
                     "mountain",
                     "high",
-                    "moderate"])
+                    "moderate",
+                    "https://i.ibb.co/BzTQ9Yj/day-background.jpg"])
                 db.run(insert, [
                     "Ustrzyki Górne",
                     "It is a small settlement at the mouth of the Terebowiec stream to Wołosatka, located on the route of the Bieszczady bypass",
@@ -136,7 +149,8 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
                     "22.52253677700643",
                     "mountain",
                     "high",
-                    "moderate"])
+                    "moderate",
+                    "https://i.ibb.co/BzTQ9Yj/day-background.jpg"])
 
                 db.run(insert, [
                     "Biebrzański Park Narodowy",
@@ -146,7 +160,8 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
                     "22.7532055229156",
                     "park",
                     "low",
-                    "less crowded"])
+                    "less crowded",
+                    "https://i.ibb.co/BzTQ9Yj/day-background.jpg"])
                 db.run(insert, [
                     "Słowiński Park Narodowy",
                     "short description",
@@ -155,7 +170,8 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
                     "22.751448626534412",
                     "park",
                     "low",
-                    "less crowded"])
+                    "less crowded",
+                    "https://i.ibb.co/BzTQ9Yj/day-background.jpg"])
                 db.run(insert, [
                     "Białowieski Park Narodowy",
                     "short description",
@@ -164,7 +180,8 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
                     "23.847813122589777",
                     "park",
                     "low",
-                    "less crowded"])
+                    "less crowded",
+                    "https://i.ibb.co/BzTQ9Yj/day-background.jpg"])
 
                 console.log("Successfully inserted into 'places' table")
         

@@ -11,6 +11,7 @@ const AddLocationForm = () => {
         category: "",
         price: "",
         congestion: "",
+        image: "",
       });
     
       const api = axios.create({
@@ -78,7 +79,7 @@ const AddLocationForm = () => {
             onChange={handleChange}
           />
 
-          <label htmlFor="category">Category:</label>
+          <label htmlFor="category">Type of place:</label>
           <input
             type="text"
             id="category"
@@ -102,6 +103,15 @@ const AddLocationForm = () => {
             id="congestion"
             name="congestion"
             value={formData.congestion}
+            onChange={handleChange}
+          />
+
+          <label htmlFor="image">Image:</label>
+          <input
+            type="text"
+            id="image"
+            name="image"
+            value={formData.image}
             onChange={handleChange}
           />
 

@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "leaflet/dist/leaflet.css";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { Icon } from "leaflet";
 import OpinionsBox from "./OpinionsBox";
 import "../App.css";
+
+
 
 const MapBox = ({ data }) => {
   const categoryIcons = {
@@ -48,6 +50,7 @@ const MapBox = ({ data }) => {
     setSelectedOpinionId(id);
   };
 
+
   return (
     <div className="mapBoxDiv">
       <MapContainer center={[51.75, 19.45]} zoom={6}>
@@ -84,7 +87,11 @@ const MapBox = ({ data }) => {
               <Popup>
                 <div className="popUpBox">
                   <h3>{item.name}</h3>
+
                   <p>{item.description}</p>
+
+                  <img src={item.image} alt={item.name} className="imageInPupup"/>
+
                   <button onClick={() => searchOnGoogle(item.name)}>
                     Search on google
                   </button>
