@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "leaflet/dist/leaflet.css";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { Icon } from "leaflet";
+import OpinionsBox from "./OpinionsBox";
+import "../App.css";
+
+
 
 const MapBox = ({ data }) => {
   const categoryIcons = {
@@ -16,7 +20,7 @@ const MapBox = ({ data }) => {
     return categoryIcons[category] || require("../icons/default.png");
   };
 
-  const findInGoogle = (searchQuery) => {
+  const searchOnGoogle = (searchQuery) => {
     console.log(searchQuery);
     const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(
       searchQuery
@@ -28,6 +32,23 @@ const MapBox = ({ data }) => {
     }
   };
 
+  const searchInNavigation = (searchQuery) => {
+    console.log(searchQuery);
+    const searchUrl = `https://www.google.com/maps/place/${encodeURIComponent(
+      searchQuery
+    )}`;
+    console.log(searchUrl);
+    const newWindow = window.open(searchUrl, "_blank");
+    if (newWindow) {
+      newWindow.opener = null;
+    }
+  };
+
+  const [selectedOpinionId, setSelectedOpinionId] = useState(null);
+
+  const handleOpinionsClick = (id) => {
+    setSelectedOpinionId(id);
+  };
 
 
   return (
@@ -50,7 +71,6 @@ const MapBox = ({ data }) => {
 
         {data.map((item) => {
           const iconUrl = getIconUrl(item.category);
-          console.log(item.lon)
 
           return (
             <Marker
@@ -67,16 +87,21 @@ const MapBox = ({ data }) => {
               <Popup>
                 <div className="popUpBox">
                   <h3>{item.name}</h3>
+
                   <p>{item.description}</p>
-                  <button>
+
+                  <img src={item.image} alt={item.name} />
+
+                  <button onClick={() => searchOnGoogle(item.name)}>
+                    Search on google
+                  </button>
+                  <button onClick={() => searchInNavigation(item.name)}>
                     Navigate
                   </button>
                   <button
-                    onClick={() => {
-                      findInGoogle(item.name)
-                    }}
+                    onClick={() => handleOpinionsClick(item.id)}
                   >
-                    Search on google
+                    Opinions
                   </button>
                 </div>
               </Popup>
@@ -84,6 +109,9 @@ const MapBox = ({ data }) => {
           );
         })}
       </MapContainer>
+      {selectedOpinionId && (
+        <OpinionsBox locationId={selectedOpinionId} onClose={() => setSelectedOpinionId(null)} />
+      )}
     </div>
   );
 };

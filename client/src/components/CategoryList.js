@@ -1,10 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from "axios";
+import "../App.css";
 
 const CategoryList = ({ selectedCategories, onCategoryChange, selectedPrice, onPriceChange, selectedCongestions, onCongestionsChange}) => {
 
-  const categories = ['city', 'beach', 'castle','park','mountain'];
+  const [categories, setCategories] = useState([]);
   const prices = ['low', 'medium', 'high'];
-  const congestions = ['less crowded','moderate','crowded'];
+  const congestions = ['less crowded', 'moderate', 'crowded'];
+
+  const fetchCategories = async () => {
+    try {
+      const response = await axios.get("http://localhost:5001/api/categories");
+      const categoriesData = response.data;
+      setCategories(categoriesData.data);
+      console.log(categoriesData);
+      console.log(response.message);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    fetchCategories();
+  }, []);
 
   const handleCategoryChange = (category) => {
     onCategoryChange(category);
@@ -18,10 +36,15 @@ const CategoryList = ({ selectedCategories, onCategoryChange, selectedPrice, onP
     onCongestionsChange(congestions);
   };
 
+  if (categories.length === 0) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className='categoryDiv'>
       <h2>📚 Category</h2>
-      
+
+      <div className='menuScroll'>
       <h4>🚀 Type of place</h4>
       {categories.map((category, index) => (
         <div key={index} className='listDiv'>
@@ -69,6 +92,9 @@ const CategoryList = ({ selectedCategories, onCategoryChange, selectedPrice, onP
           <label htmlFor={congestion}>{congestion}</label>
         </div>
       ))}
+      </div>
+
+
       <button className='openMenuButton' onClick={
         () => {
           const menu = document.querySelector('.categoryDiv');

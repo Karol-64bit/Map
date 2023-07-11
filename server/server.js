@@ -2,6 +2,8 @@ const express = require('express')
 const app = express()
 var db = require("./database.js")
 const cors = require('cors');
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 app.use(cors());
 // Server port
 var HTTP_PORT = 5001
@@ -12,7 +14,7 @@ app.listen(HTTP_PORT, () => {
     app.setMaxListeners(0);
 
 });
-
+app.use(express.json());
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -26,132 +28,48 @@ app.get("/", (req, res, next) => {
   res.json({"message":"Ok"})
 });
 
-// API endpoints
+// API endpoints // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // 
 
 
-// app.get("/api/category/:categories", (req, res, next) => {
-//   var categories = req.params.categories.split(",");
-
-//   var placeholders = categories.map(() => "?").join(",");
-
-//   var sql = "SELECT * FROM places WHERE category IN (" + placeholders + ")";
-//   var params = categories;
-
-//   console.log("1");
-//   console.log(sql);
-//   console.log(params);
-
-//   db.all(sql, params, (err, rows) => {
-//     if (err) {
-//       res.status(400).json({ "error": err.message });
-//       return;
-//     }
-//     res.json({
-//       "message": "success",
-//       "data": rows
-//     });
-//   });
-// });
-
-// app.get("/api/categoryandprice/:categories/:price", (req, res, next) => {
-//   var categories = req.params.categories.split(",");
-//   var price = req.params.price;
-
-//   var placeholders = categories.map(() => "?").join(",");
-  
-//   var sql = "SELECT * FROM places WHERE category IN (" + placeholders + ")";
-//   var params = categories;
-
-//   sql += " AND price = ?";
-//   params.push(price);
-
-//   console.log("2");
-//   console.log(sql);
-//   console.log(params);
-  
-//   db.all(sql, params, (err, rows) => {
-//     if (err) {
-//       res.status(400).json({ "error": err.message });
-//       return;
-//     }
-//     res.json({
-//       "message": "success",
-//       "data": rows
-//     });
-//   });
-// });
-
-app.get("/api/test/:categories/:price/:congestions", (req, res, next) => {
-  console.log("api work")
-  var categories = req.params.categories.split(",");
-  var price = req.params.price.split(",");;
-  var congestions = req.params.congestions.split(",");
-
-  var categoryPlaceholders = categories.map(() => "?").join(",");
-  var pricePlaceholders = price.map(() => "?").join(",");
-  var congestionsPlaceholders = congestions.map(() => "?").join(",");
-  
-
-  var sql = "SELECT * FROM places";
-
-  var params = [];
-
-  if (categories.length > 0) {
-    sql += " WHERE category IN (" + categoryPlaceholders + ")";
-    params = params.concat(categories);
-  }
-
-  if (price.length > 0) {
-    sql +=
-      (params.length > 0 ? " AND" : " WHERE") +
-      " price IN (" +
-      pricePlaceholders +
-      ")";
-    params = params.concat(price);
-  }
-
-  if (congestions.length > 0) {
-    sql +=
-      (params.length > 0 ? " AND" : " WHERE") +
-      " congestion IN (" +
-      congestionsPlaceholders +
-      ")";
-    params = params.concat(congestions);
-  }
-  console.log("2");
-  console.log(sql);
-  console.log(params);
-
-  db.all(sql, params, (err, rows) => {
-    if (err) {
-      res.status(400).json({ error: err.message });
-      return;
-    }
-    res.json({
-      message: "success",
-      data: rows,
-    });
-  });
-});
-
-
-app.get("/api/test2/:request", (req, res, next) => {
+// Endpoint locations
+app.get("/api/locations", (req, res, next) => {
   console.log("api work");
-  var request = req.params.request
 
-  var sql = "SELECT * FROM places ";
-  sql +=request;
-  var params = [];
+
+  let conditions = [];
+
+  console.log(req.query.category);
+  console.log(req.query.price);
+  console.log(req.query.congestion);
+
+  if (req.query.category) {
+
+    conditions.push(`category IN (${req.query.category})`);
+  }
+
+  if (req.query.price) {
+    conditions.push(`price IN (${req.query.price})`);
+  }
+
+  if (req.query.congestion) {
+    conditions.push(`congestion IN (${req.query.congestion})`);
+  }
+
+  let sql = "SELECT * FROM places";
+
+  if (conditions.length > 0) {
+    sql += " WHERE " + conditions.join(" AND ");
+  }
 
   console.log(sql);
-  // console.log(params);
+  console.log(req.query.params);
 
   db.all(sql, (err, rows) => {
     if (err) {
       res.status(400).json({ error: err.message });
       return;
     }
-    console.log(rows)
+
     res.json({
       message: "success",
       data: rows,
@@ -160,6 +78,332 @@ app.get("/api/test2/:request", (req, res, next) => {
 });
 
 
+
+// Middleware JWT token
+const authenticateToken = (req, res, next) => {
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1];
+
+  if (token == null) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+
+  jwt.verify(token, 'secret_key', (err, user) => {
+    if (err) {
+      console.error(err);
+      return res.status(403).json({ error: 'Forbidden' });
+    }
+
+    req.user = user;
+    next();
+  });
+};
+
+
+// Endpoint register
+app.post('/api/register', (req, res) => {
+  const { username, password } = req.body;
+  db.get('SELECT * FROM users WHERE username = ?', [username], (err, row) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ error: 'Internal Server Error' });
+    }
+
+    if (row) {
+      return res.status(400).json({ error: 'Username already exists' });
+    }
+
+    bcrypt.hash(password, 10, (err, hashedPassword) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).json({ error: 'Internal Server Error' });
+      }
+
+      db.run(
+        "INSERT INTO users (username, password) VALUES (?, ?)",
+        [username, hashedPassword],
+        (err) => {
+          if (err) {
+            console.error(err);
+            return res.status(500).json({ error: "Internal Server Error" });
+          }
+
+          res.status(201).json({ message: "User registered successfully" });
+        }
+      );
+    });
+  });
+});
+
+// Endpoint login
+app.post('/api/login', (req, res) => {
+  const { username, password } = req.body;
+
+  db.get('SELECT * FROM users WHERE username = ?', [username], (err, row) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ error: 'Internal Server Error' });
+    }
+
+    if (!row) {
+      return res.status(401).json({ error: 'Invalid credentials' });
+    }
+
+    bcrypt.compare(password, row.password, (err, result) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).json({ error: 'Internal Server Error' });
+      }
+
+      if (!result) {
+        return res.status(401).json({ error: 'Invalid credentials' });
+      }
+
+      const token = jwt.sign({ username: row.username }, 'secret_key');
+
+      res.status(200).json({ token, userId:row.id });
+    });
+  });
+});
+
+
+//  Endpoint opinions of one location
+app.get("/api/opinions", (req, res, next) => {
+  console.log("api work");
+
+  console.log(req.query.place);
+
+  const place_id = req.query.place
+
+  let sql = "SELECT * FROM opinions";
+
+  sql += " WHERE place_id = " + place_id;
+
+  console.log(sql);
+
+  db.all(sql, (err, rows) => {
+    if (err) {
+      res.status(400).json({ error: err.message });
+      return;
+    }
+
+    res.json({
+      message: "success",
+      data: rows,
+    });
+  });
+});
+
+//  Endpoint opinions of all location
+app.get("/api/allopinions", (req, res, next) => {
+  console.log("api work");
+
+  console.log(req.query.place);
+
+  let sql = `
+  SELECT o.*, u.username AS user_name, l.name AS location_name
+  FROM opinions o
+  LEFT JOIN users u ON o.user_id = u.id
+  LEFT JOIN places l ON o.place_id = l.id
+`;
+
+  console.log(sql);
+
+  db.all(sql, (err, rows) => {
+    if (err) {
+      res.status(400).json({ error: err.message });
+      return;
+    }
+
+    res.json({
+      message: "success",
+      data: rows,
+    });
+  });
+});
+
+// Endpoints add new opinion
+app.post('/api/opinions', (req, res) => {
+  const { content, user_name, user_id, place_id } = req.body;
+
+  const sql = 'INSERT INTO opinions (content, user_name, user_id, place_id) VALUES (?, ?, ?, ?)';
+  const values = [content, user_name, user_id, place_id];
+  console.log(values);
+  db.run(sql, values, function (err) {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ error: 'Internal Server Error' });
+    }
+
+    res.json({
+      message: 'Opinion added successfully',
+      opinionId: this.lastID,
+    });
+  });
+});
+
+// Endpoint delete opinion
+app.delete("/api/opinions/:id", (req, res, next) => {
+  console.log("deleting");
+  const opinionId = req.params.id;
+
+  const sql = "DELETE FROM opinions WHERE id = ?";
+
+  db.run(sql, [opinionId], (err) => {
+    if (err) {
+      res.status(500).json({ error: err.message });
+      return;
+    }
+
+    res.json({ message: "Opinion deleted successfully" });
+  });
+});
+
+// Endpoint edit opinion
+app.put("/api/opinions/:id", (req, res, next) => {
+  const opinionId = req.params.id;
+  const { content } = req.body;
+
+  const sql = "UPDATE opinions SET content = ? WHERE id = ?";
+
+  db.run(sql, [content, opinionId], (err) => {
+    if (err) {
+      res.status(500).json({ error: err.message });
+      return;
+    }
+
+    res.json({ message: "Opinion updated successfully" });
+  });
+});
+
+
+// Endpoint Add new location
+app.post('/api/newlocation', (req, res) => {
+  const {
+    name,
+    description,
+    lat,
+    lon,
+    category,
+    price,
+    congestion,
+    image,
+  } = req.body;
+
+  db.run(
+    "INSERT INTO places (name, description, description_long, lat, lon, category, price, congestion, image) VALUES (?,?,?,?,?,?,?,?,?)",
+    [
+      name,
+      description,
+      "nothing",
+      lat,
+      lon,
+      category,
+      price,
+      congestion,
+      image,
+    ],
+    (err) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).json({ error: "Internal Server Error" });
+      }
+
+      res.status(201).json({ message: "User registered successfully" });
+    }
+  );
+});
+
+
+// Endpoint all locations
+app.get("/api/alllocations", (req, res, next) => {
+  console.log("api: all locations");
+
+  let sql = "SELECT * FROM places";
+
+  console.log(sql);
+
+
+  db.all(sql, (err, rows) => {
+    if (err) {
+      res.status(400).json({ error: err.message });
+      return;
+    }
+
+    res.json({
+      message: "success",
+      data: rows,
+    });
+  });
+});
+
+// Endpoint delete location
+app.delete("/api/location/:id", (req, res, next) => {
+  console.log("api: delete location");
+
+  const id = req.params.id;
+
+  let sql = "DELETE FROM places WHERE id = ?";
+
+  db.run(sql, id, (err) => {
+    if (err) {
+      res.status(400).json({ error: err.message });
+      return;
+    }
+
+    res.json({
+      message: "success",
+      data: id,
+    });
+  });
+});
+
+
+// Endpoint edit location
+app.put("/api/location/:id", (req, res, next) => {
+  console.log("api: edit location");
+
+  const id = req.params.id;
+  const { name, description, lat, lon, category, price, congestion, image } = req.body;
+
+  let sql = `
+    UPDATE places 
+    SET name = ?, description = ?,description_long = ?, lat = ?, lon = ?, category = ?, price = ?, congestion = ?, image = ?
+    WHERE id = ?
+  `;
+
+  db.run(sql, [name, description,"nothing", lat, lon, category, price, congestion,image, id], (err) => {
+    if (err) {
+      res.status(400).json({ error: err.message });
+      return;
+    }
+
+    res.json({
+      message: "success",
+      data: id,
+    });
+  });
+});
+
+
+// Endpoint category
+app.get("/api/categories", (req, res, next) => {
+  let sql = "SELECT DISTINCT category FROM places";
+
+  db.all(sql, (err, rows) => {
+    if (err) {
+      res.status(400).json({ error: err.message });
+      return;
+    }
+
+    const categories = rows.map((row) => row.category);
+
+    res.json({
+      message: "success",
+      data: categories,
+    });
+  });
+});
 
 
 
