@@ -1,25 +1,62 @@
 .opinionsBox {
-    position: fixed;
-    left: 50%;
-    bottom: 30px;
-    transform: translateX(-50%);
-    z-index: 9999;
-    font-family: 'Montserrat', sans-serif;
-    background-color: #ffffff;
-    margin: 10px;
-    border-radius: 10px;
-    padding: 10px 40px;
-    color: #000;
-    border: 1.5px solid #000;
-  }
+  position: fixed;
+  left: 94%;
+  bottom: 10%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 10px 40px;
+  color: #000;
+  border: 1.5px solid #000;
+}
 
-.headerWithLine{
-    border-top: 1px solid black;
+.opinionsBox h2{
+  margin: 7px 0;
+}
+
+.opinionsBox .username{
+  font-weight: bold;
+}
+
+.opinionsBox img{
+  position: absolute;
+  top: 12px;
+  right: 20px;
+}
+
+.opinionsAdd button {
+  background-color: #ffffff;
+  text-align: center;
+  padding: 10px 10px;
+  margin-left: 115px;
+  margin-top: 10px;
+  border-radius: 10px;
+  color: #000;
+  border: 1.5px solid #000;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.opinionsAdd h2{
+  border-top: 1px solid black;
+  padding-top: 10px;
+  margin: 10px 0;
+}
+
+.opinionsAdd input{
+  width: 100%;
+  margin: 10px 0;
+  padding: 5px;
+  border-radius: 10px;
+  border: 1.5px solid #000;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .closeButton {
-    float:right;
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
-  }
+  float:right;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}

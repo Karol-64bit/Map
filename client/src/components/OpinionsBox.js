@@ -68,12 +68,12 @@ const OpinionsBox = ({ locationId, onClose }) => {
       </div>
       <h2>Opinions:</h2>
       {data.map((item)=>{
-        return(<div className='dataRow' key={item.id}>{item.user_name}: {item.content}</div>)
+        return(<div key={item.id}><span className='username'>{item.user_name}:</span> {item.content}</div>)
       })}
 
       {username && (
-        <div>
-          <h2 className='headerWithLine'>Add Opinion:</h2>
+        <div className='opinionsAdd'>
+          <h2>Add Opinion:</h2>
           <input
             type="text"
             id="price"

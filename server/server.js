@@ -298,7 +298,7 @@ app.post('/api/newlocation', (req, res) => {
       "nothing",
       lat,
       lon,
-      category,
+      category.toLowerCase(),
       price,
       congestion,
       image,

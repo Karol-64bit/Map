@@ -120,11 +120,16 @@ label {
     background-color: #FFF;
     color: #000;
     cursor: pointer;
-    margin: 0 4px;
+    margin: 4px;
 }
 
 .popUpBox button:hover{
     background-color: #CCC;
+}
+
+.popUpBox img{
+    width: 54%;
+    border-radius: 10px;
 }
 
 .loginInfo{
@@ -196,57 +201,51 @@ label {
     color: #000;
     border: 1.5px solid #000;
     font-family: 'Montserrat', sans-serif;
-  }
+}
   
-  .loginAndRegisterForm label,
-  .loginAndRegisterForm input {
-    display: block;
-    margin-bottom: 10px;
-  }
+.loginAndRegisterForm label,
+.loginAndRegisterForm input {
+  display: block;
+  margin-bottom: 10px;
+}
   
-  .loginAndRegisterForm input[type="text"],
-  .loginAndRegisterForm input[type="password"] {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #000;
-    border-radius: 4px;
-  }
-  
-  .loginAndRegisterForm button {
-    width: 100%;
-    padding: 10px;
-    border-radius: 10px;
-    color: #000;
-    border: 1.5px solid #000;
-    font-family: 'Montserrat', sans-serif;
-    cursor: pointer;
-    margin: 10px;
-  }
-  
-  .loginAndRegisterForm button:hover {
-    background-color: #c0c0c0;
-  }
+.loginAndRegisterForm input[type="text"],
+.loginAndRegisterForm input[type="password"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #000;
+  border-radius: 4px;
+}
 
-  .headerDiv {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .headerDiv h2 {
-    margin: 0;
-  }
-  
-  .closeButton {
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
-  }
+.loginAndRegisterForm button {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  color: #000;
+  border: 1.5px solid #000;
+  font-family: 'Montserrat', sans-serif;
+  cursor: pointer;
+  margin: 10px;
+}
 
-  .imageInPopup {
-    /* TU JAKUBIE NAPISZ STYLE DO OBRAZKA ŻEBY BYŁ ŚLICZNY ŁADNY I NIE WYSTAŁ POZA POPKA UPA */
-  }
+.loginAndRegisterForm button:hover {
+  background-color: #c0c0c0;
+}
+.headerDiv {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+  
+.headerDiv h2 {
+  margin: 0;
+}
 
+.closeButton {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
 
 .openMenuButton{
     display: none;
