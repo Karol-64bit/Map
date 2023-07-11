@@ -121,3 +121,81 @@ label {
 .popUpBox button:hover{
     background-color: #CCC;
 }
+
+.openMenuButton{
+    display: none;
+}
+
+.closeMenuButton{
+    display: none;
+}
+
+@media screen and (min-width: 800px) and (max-width: 1200px) {
+    .categoryDiv{
+        width: 200px;
+    }
+    
+    .categoryDiv h2 {
+        font-size: 25px;
+    }
+
+    .categoryDiv h4 {
+        font-size: 20px;
+    }
+
+    .categoryInput + label,
+    .priceInput + label,
+    .congestionInput + label{
+        padding: 10px 30px;
+    }
+
+    .popUpBox h3{
+        font-size: 18px;
+    }
+
+    .popUpBox p{
+        font-size: 15px;
+    }
+
+    .popUpBox button{
+        padding: 8px 10px;
+        border-radius: 12px;
+        border: 1.5px solid #000;
+        margin: 0 4px;
+    }
+}
+@media screen and (max-width: 800px) {
+    .openMenuButton{
+        display: block;
+        position: absolute;
+        font-size: 30px;
+        top: 480px;
+        left: 0px;
+        background-color: #FFF;
+        border-right: 1px solid #000;
+        border-top: 1px solid #000;
+        border-bottom: 1px solid #000;
+        border-left: 1px solid #FFF;
+        padding: 10px;
+        cursor: pointer;
+        z-index: 1000;
+    }
+    .categoryDiv{
+        position: absolute;
+    }
+    .closeMenuButton{
+        display: none;
+        position: absolute;
+        font-size: 30px;
+        top: 480px;
+        left: 223px;
+        background-color: #FFF;
+        border-right: 1px solid #000;
+        border-top: 1px solid #000;
+        border-bottom: 1px solid #000;
+        border-left: 1px solid #FFF;
+        padding: 10px;
+        cursor: pointer;
+        z-index: 1000;
+    }
+}

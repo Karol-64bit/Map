@@ -69,6 +69,26 @@ const CategoryList = ({ selectedCategories, onCategoryChange, selectedPrice, onP
           <label htmlFor={congestion}>{congestion}</label>
         </div>
       ))}
+      <button className='openMenuButton' onClick={
+        () => {
+          const menu = document.querySelector('.categoryDiv');
+          const buttonOpen = document.querySelector('.openMenuButton');
+          const buttonClose = document.querySelector('.closeMenuButton');
+          menu.style.position = 'relative';
+          buttonOpen.style.display = 'none';
+          buttonClose.style.display = 'block';
+        }
+      }>▶</button>
+      <button className='closeMenuButton' onClick={
+        () => {
+          const menu = document.querySelector('.categoryDiv');
+          const buttonClose = document.querySelector('.closeMenuButton');
+          const buttonOpen = document.querySelector('.openMenuButton');
+          menu.style.position = 'absolute';
+          buttonClose.style.display = 'none';
+          buttonOpen.style.display = 'block';
+        }
+      }>◀</button>
     </div>
   );
 }
