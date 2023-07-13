@@ -11,7 +11,7 @@ const AdminPanel = () => {
 
   if (open==="addLocationFormView") {
     return (
-      <div className="addLocationForm">
+      <div className="adminPanel">
         <div className="buttonGroup">
           <button className="checked" onClick={()=>{setOpen("addLocationFormView");}}>Add new location</button>
           <button className="unchecked" onClick={()=>{setOpen("manageLocationsView");}}>Manage locations</button>
@@ -25,7 +25,7 @@ const AdminPanel = () => {
 
   if(open==="manageLocationsView"){
     return (
-      <div className="addLocationForm">
+      <div className="adminPanel">
         <div className="buttonGroup">
           <button className="unchecked" onClick={()=>{setOpen("addLocationFormView");}}>Add new location</button>
           <button className="checked" onClick={()=>{setOpen("manageLocationsView");}}>Manage locations</button>
@@ -38,7 +38,7 @@ const AdminPanel = () => {
 
   if(open==="manageOpinionsView"){
     return (
-      <div className="addLocationForm">
+      <div className="adminPanel">
         <div className="buttonGroup">
           <button className="unchecked" onClick={()=>{setOpen("addLocationFormView");}}>Add new location</button>
           <button className="unchecked" onClick={()=>{setOpen("manageLocationsView");}}>Manage locations</button>

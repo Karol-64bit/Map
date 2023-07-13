@@ -31,6 +31,29 @@ app.get("/", (req, res, next) => {
 // API endpoints // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // 
 
 
+
+// Middleware JWT token
+const authenticateToken = (req, res, next) => {
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1];
+
+  if (token == null) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+
+  jwt.verify(token, 'secret_key', (err, user) => {
+    if (err) {
+      console.error(err);
+      return res.status(403).json({ error: 'Forbidden' });
+    }
+
+    req.user = user;
+    next();
+  });
+};
+
+
+
 // Endpoint locations
 app.get("/api/locations", (req, res, next) => {
   console.log("api work");
@@ -79,25 +102,7 @@ app.get("/api/locations", (req, res, next) => {
 
 
 
-// Middleware JWT token
-const authenticateToken = (req, res, next) => {
-  const authHeader = req.headers['authorization'];
-  const token = authHeader && authHeader.split(' ')[1];
 
-  if (token == null) {
-    return res.status(401).json({ error: 'Unauthorized' });
-  }
-
-  jwt.verify(token, 'secret_key', (err, user) => {
-    if (err) {
-      console.error(err);
-      return res.status(403).json({ error: 'Forbidden' });
-    }
-
-    req.user = user;
-    next();
-  });
-};
 
 
 // Endpoint register
@@ -223,7 +228,7 @@ app.get("/api/allopinions", (req, res, next) => {
 });
 
 // Endpoints add new opinion
-app.post('/api/opinions', (req, res) => {
+app.post('/api/opinions',authenticateToken, (req, res) => {
   const { content, user_name, user_id, place_id } = req.body;
 
   const sql = 'INSERT INTO opinions (content, user_name, user_id, place_id) VALUES (?, ?, ?, ?)';

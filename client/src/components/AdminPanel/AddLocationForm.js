@@ -90,72 +90,108 @@ const AddLocationForm = () => {
         />
 
         <label htmlFor="price">Price:</label>
-        <div>
-          <label>
-            <input
-              type="checkbox"
-              name="price"
-              value="low"
-              checked={formData.price === "low"}
-              onChange={handleChange}
-            />{" "}
+        <div className="listDiv">
+          
+          
+          <input
+            className='checkboxInput'
+            type="checkbox"
+            id="low"
+            name="price"
+            value="low"
+            checked={formData.price === "low"}
+            onChange={handleChange}
+          />
+          <label htmlFor="low">
             Low
           </label>
-          <label>
-            <input
-              type="checkbox"
-              name="price"
-              value="medium"
-              checked={formData.price === "medium"}
-              onChange={handleChange}
-            />{" "}
-            Medium
+
+
+          
+          <input
+            className='checkboxInput'
+            type="checkbox"
+            id="medium"
+            name="price"
+            value="medium"
+            checked={formData.price === "medium"}
+            onChange={handleChange}
+          />
+          <label htmlFor="medium">
+          Medium
           </label>
-          <label>
-            <input
-              type="checkbox"
-              name="price"
-              value="high"
-              checked={formData.price === "high"}
-              onChange={handleChange}
-            />{" "}
-            High
+          
+          <input
+            className='checkboxInput'
+            type="checkbox"
+            id="high"
+            name="price"
+            value="high"
+            checked={formData.price === "high"}
+            onChange={handleChange}
+          />
+          <label htmlFor="high">
+          High
           </label>
+
         </div>
 
-        <label htmlFor="congestion">Congestion:</label>
-        <div>
-          <label>
-            <input
-              type="checkbox"
-              name="congestion"
-              value="less crowded"
-              checked={formData.congestion === "less crowded"}
-              onChange={handleChange}
-            />{" "}
-            Low
+
+
+
+        <label>Congestion:</label>
+        <div className="listDiv">
+          
+          <div>
+          <input
+            className='checkboxInput'
+            id="Low"
+            type="checkbox"
+            name="congestion"
+            value="less crowded"
+            checked={formData.congestion === "less crowded"}
+            onChange={handleChange}
+          />
+          <label htmlFor="Low">
+            Less Crowded
           </label>
-          <label>
+          </div>
+
+          
+          <div>
             <input
+              className='checkboxInput'
+              id="Medium"
               type="checkbox"
               name="congestion"
               value="moderate"
               checked={formData.congestion === "moderate"}
               onChange={handleChange}
-            />{" "}
-            Medium
-          </label>
-          <label>
+            />
+            <label htmlFor="Medium">
+              Moderate
+            </label>
+            </div>
+
+            <div>
             <input
+              className='checkboxInput'
+              id="High"
               type="checkbox"
               name="congestion"
               value="crowded"
               checked={formData.congestion === "crowded"}
               onChange={handleChange}
-            />{" "}
-            High
+            />
+            <label htmlFor="High">
+              Crowded
           </label>
+          </div>
         </div>
+
+
+
+
 
         <label htmlFor="image">Image:</label>
         <input

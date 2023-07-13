@@ -15,24 +15,30 @@ const OpinionsBox = ({ locationId, onClose }) => {
   });
 
   const handleAddOpinion = async () => {
-    if(content.length > 5) {
+    if (content.length > 5) {
       try {
+        const token = localStorage.getItem('token');
         const response = await axios.post('http://localhost:5001/api/opinions', {
           content: content,
           user_name: username,
           user_id: localStorage.getItem('userId'),
           place_id: locationId
+        }, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
         });
-    
+  
         const data = response.data;
         console.log(data);
-        fetchOpinion()
+        fetchOpinion();
+        setContent("")
       } catch (error) {
         alert(error.message);
         console.log(error);
       }
-    }else {
-      alert("Too short opinion, try to write more")
+    } else {
+      alert("Too short opinion, try to write more");
     }
   };
 

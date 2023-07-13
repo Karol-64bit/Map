@@ -1,4 +1,4 @@
-.addLocationForm {
+.adminPanel {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -8,36 +8,31 @@
     padding: 10px 40px;
     margin: 10px;
     border-radius: 10px;
-    color: #000;
     border: 1.5px solid #000;
     font-family: 'Montserrat', sans-serif;
+    width: 60%;
+    min-height: 60%;
   }
+
   
-  /* .addLocationForm label,
-  .addLocationForm input {
-    display: block;
-    margin-bottom: 10px;
-  } */
-  
-  .addLocationForm input[type="text"] {
+  .adminPanel input[type="text"] {
     width: 100%;
     padding: 8px;
     border: 1px solid #000;
     border-radius: 4px;
   }
   
-  .addLocationForm button {
+  .adminPanel button {
     width: 100%;
     padding: 10px;
     border-radius: 10px;
-    /* color: #000; */
     border: 1.5px solid #000;
     font-family: 'Montserrat', sans-serif;
     cursor: pointer;
     margin: 10px;
   }
   
-.addLocationForm button:hover {
+.adminPanel button:hover {
     background-color: #c0c0c0;
   }
 
@@ -141,3 +136,26 @@
   margin-left: 10px;
 }
 
+
+
+/* Add new location */
+
+.checkboxInput{
+    display: none;
+}
+
+.checkboxInput + label{
+    display: inline-block;
+    letter-spacing: 4px;
+    text-align: center;
+    padding: 10px 40px;
+    margin: 10px;
+    border-radius: 10px;
+    color: #000;
+    border: 1.5px solid #000;
+    cursor: pointer;
+}
+
+.checkboxInput:checked + label{
+    background-color: #CCC;
+}

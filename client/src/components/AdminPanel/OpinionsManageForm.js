@@ -8,6 +8,16 @@ const OpinionsManageForm = () => {
 
   const [content, setContent] = useState("");
 
+  const [searchText, setSearchText] = useState("");
+  
+  const handleSearch = (event) => {
+    setSearchText(event.target.value);
+  };
+
+  const filteredData = data.filter((item) =>
+    item.location_name.toLowerCase().includes(searchText.toLowerCase())
+  );
+
   const api = axios.create({
     baseURL: "http://localhost:5001",
   });
@@ -80,6 +90,14 @@ const OpinionsManageForm = () => {
     return (
       <div>
         <h2>List of all opinions</h2>
+        <div className="searchContainer">
+        <input
+          type="text"
+          placeholder="Search..."
+          value={searchText}
+          onChange={handleSearch}
+        />
+        </div>
         <div className="locationsContainer">
           <table className="locationsTable">
             <thead>
@@ -91,7 +109,7 @@ const OpinionsManageForm = () => {
               </tr>
             </thead>
             <tbody>
-              {data.map((item) => (
+              {filteredData.map((item) => (
                 <tr key={item.id}>
                   <td>{item.user_name}</td>
                   <td>{item.location_name}</td>

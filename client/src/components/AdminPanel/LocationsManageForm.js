@@ -17,6 +17,16 @@ const LocationsManageForm = () => {
     image: "",
   });
 
+  const [searchText, setSearchText] = useState("");
+  
+  const handleSearch = (event) => {
+    setSearchText(event.target.value);
+  };
+
+  const filteredData = data.filter((item) =>
+    item.name.toLowerCase().includes(searchText.toLowerCase())
+  );
+
   const api = axios.create({
     baseURL: "http://localhost:5001",
   });
@@ -97,10 +107,23 @@ const LocationsManageForm = () => {
     }
   };
 
+
+
+
   if(!editmode) {
     return (
       <div>
         <h2>List of all location</h2>
+
+        <div className="searchContainer">
+        <input
+          type="text"
+          placeholder="Search..."
+          value={searchText}
+          onChange={handleSearch}
+        />
+      </div>
+
         <div className="locationsContainer">
           <table className="locationsTable">
             <thead>
@@ -117,7 +140,7 @@ const LocationsManageForm = () => {
               </tr>
             </thead>
             <tbody>
-              {data.map((item) => (
+              {filteredData.map((item) => (
                 <tr key={item.id}>
                   <td>{item.name}</td>
                   <td>{String(item.description).slice(0, 25)}...</td>
@@ -126,7 +149,7 @@ const LocationsManageForm = () => {
                   <td>{item.category}</td>
                   <td>{item.price}</td>
                   <td>{item.congestion}</td>
-                  <td>{item.image}</td>
+                  <td>{String(item.image).slice(0,20)}...</td>
                   <td>
                     <button onClick={() => handleEdit(item.id)}>Edit</button>
                     <button onClick={() => handleDelete(item.id)}>Delete</button>
