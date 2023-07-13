@@ -1,7 +1,7 @@
 .opinionsBox {
   position: fixed;
-  left: 94%;
-  bottom: 10%;
+  left: 50%;
+  bottom: 1%;
   transform: translateX(-50%);
   z-index: 9999;
   font-family: 'Montserrat', sans-serif;
@@ -29,8 +29,8 @@
 .opinionsAdd button {
   background-color: #ffffff;
   text-align: center;
+
   padding: 10px 10px;
-  margin-left: 115px;
   margin-top: 10px;
   border-radius: 10px;
   color: #000;

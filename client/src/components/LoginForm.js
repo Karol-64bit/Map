@@ -104,7 +104,7 @@ const LoginForm = () => {
         {localStorage.getItem('username') === "admin" ? (
           <div>
             <div className="loginInfo" onClick={logOutHandle}>
-              Witaj, {localStorage.getItem('username')}!
+              Hello, {localStorage.getItem('username')}!
             </div>
 
             <div className="adminFormTrigger">
@@ -114,7 +114,7 @@ const LoginForm = () => {
           </div>
         ) : (
           <div className="loginInfo" onClick={logOutHandle}>
-            Witaj, {localStorage.getItem('username')}!
+            Hello, {localStorage.getItem('username')}!
           </div>
         )}
       </div>

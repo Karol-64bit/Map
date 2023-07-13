@@ -48,7 +48,8 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
                     "city",
                     "high",
                     "crowded",
-                    "https://i.ibb.co/BzTQ9Yj/day-background.jpg"])
+                    "https://i.ibb.co/BzTQ9Yj/day-background.jpg"
+                ])
                 db.run(insert, [
                     "Gdańsk",
                     "This is a city in the northern part of Poland",

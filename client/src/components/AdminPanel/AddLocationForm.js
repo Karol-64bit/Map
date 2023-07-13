@@ -32,8 +32,17 @@ const AddLocationForm = () => {
 
     try {
       const response = await api.post("api/newlocation", formData);
-      const token = response.data.token;
-      localStorage.setItem("token", token);
+      setFormData({
+        name: "",
+        description: "",
+        lat: "",
+        lon: "",
+        category: "",
+        price: "",
+        congestion: "",
+        image: "",
+      });
+      alert("ok")
     } catch (error) {
       alert(error.message);
       console.log(error);
