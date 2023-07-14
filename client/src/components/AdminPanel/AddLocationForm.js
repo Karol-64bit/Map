@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
 const AddLocationForm = () => {
   const [formData, setFormData] = useState({
@@ -12,7 +14,7 @@ const AddLocationForm = () => {
     congestion: "",
     image: "",
   });
-
+  const MySwal = withReactContent(Swal)
   const api = axios.create({
     baseURL: "http://localhost:5001",
   });
@@ -42,7 +44,14 @@ const AddLocationForm = () => {
         congestion: "",
         image: "",
       });
-      alert("ok")
+      Swal.fire({
+        position: 'top',
+        icon: 'success',
+        title: 'New location has been added',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      // alert("ok")
     } catch (error) {
       alert(error.message);
       console.log(error);

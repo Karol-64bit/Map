@@ -37,7 +37,7 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
                     "city",
                     "low",
                     "moderate",
-                    "https://i.ibb.co/BzTQ9Yj/day-background.jpg"
+                    "https://ocdn.eu/pulscms-transforms/1/VEnk9kpTURBXy9hZmZmNGU1ODBjZmI5NGI4YTRmZWZlNjIxMTNjMzgzYy5qcGeTlQPNAe4AzRvHzQ-gkwmmNjIyNDAwBpMFzQSwzQJ23gABoTAB/wroclaw.jpg"
                 ])
                 db.run(insert, [
                     "Warsaw",
@@ -48,8 +48,7 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
                     "city",
                     "high",
                     "crowded",
-                    "https://i.ibb.co/BzTQ9Yj/day-background.jpg"
-                ])
+                    "https://warsawtour.pl/wp-content/uploads/2023/03/Panorama-Warszawy-z-Widok-Towers-fot.-Filip-Kwiatkowski-1.jpg"])
                 db.run(insert, [
                     "Gdańsk",
                     "This is a city in the northern part of Poland",
@@ -59,7 +58,7 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
                     "city",
                     "high",
                     "moderate",
-                    "https://i.ibb.co/BzTQ9Yj/day-background.jpg"])
+                    "https://pomorskie.travel/wp-content/uploads/2021/03/Gdansk-i-jego-atrakcje-fot.-M.Ochocki-Pomorskie.Travel-4.jpg"])
 
                 db.run(insert, [
                     "Hel",
@@ -70,7 +69,7 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
                     "beach",
                     "low",
                     "crowded",
-                    "https://i.ibb.co/BzTQ9Yj/day-background.jpg"])
+                    "https://blog.noclegi.pl/wp-content/uploads/Hel-atrakcje-%E2%80%93-TOP-8.-miejsc-kt%C3%B3re-warto-zobaczy%C4%87.jpg"])
                 db.run(insert, [
                     "Świnoujście",
                     "The beach is among the cleanest and warmest in the country",
@@ -80,7 +79,7 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
                     "beach",
                     "medium",
                     "crowded",
-                    "https://i.ibb.co/BzTQ9Yj/day-background.jpg"])
+                    "https://iswinoujscie.pl/im/artykuly/75892_03082022.jpg"])
                 db.run(insert, [
                     "Kołobrzeg",
                     "one of the most popular beaches during the tourist season.",
@@ -90,7 +89,7 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
                     "beach",
                     "high",
                     "crowded",
-                    "https://i.ibb.co/BzTQ9Yj/day-background.jpg"])
+                    "https://ocdn.eu/pulscms-transforms/1/1NSk9kpTURBXy9iZTQyMDRkNGQ3YzlmYTg1NTBkYjJmNWJhOWI4MTBjZS5qcGeTlQMDAM0VUc0L_pMJpjFjYTc5MQaTBc0EsM0Cdt4AAaEwAQ/kolobrzeg-i-okolice-ciekawostki-zwiedzanie-historia-co-zobaczyc-przewodnik.jpg"])
                 db.run(insert, [
                     "Malbork",
                     "Castle in Malbork",
@@ -100,7 +99,7 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
                     "castle",
                     "medium",
                     "crowded",
-                    "https://i.ibb.co/BzTQ9Yj/day-background.jpg"])
+                    "https://przekraczajacgranice.pl/wp-content/uploads/2022/08/zamek-w-malborku-1.jpg"])
                 db.run(insert, [
                     "Wawel",
                     "Castle in Cracow",
@@ -110,7 +109,7 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
                     "castle",
                     "low",
                     "crowded",
-                    "https://i.ibb.co/BzTQ9Yj/day-background.jpg"])
+                    "https://ocdn.eu/pulscms-transforms/1/_5Bk9kpTURBXy9mYzlmYjJmZDc3Yjc2ZGZkZWRlMmNiNmM0YmFhZGExOC5qcGeTlQMAzKrNFVjNDAGVAs0EsADDw5MJpjEzOGMwMAbeAAGhMAE/zamek-krolewski-na-wawelu-krakow.jpeg"])
                 db.run(insert, [
                     "Książ",
                     "Castle in Wałbrzych",
@@ -120,7 +119,7 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
                     "castle",
                     "high",
                     "moderate",
-                    "https://i.ibb.co/BzTQ9Yj/day-background.jpg"])
+                    "https://images.zwierciadlo.pl/_resource/res/path/8a/0e/8a0ebfe6-802f-453d-b232-1a98a08b62a2_f750x750"])
                 
                 db.run(insert, [
                     "Gubałówka",
@@ -131,7 +130,7 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
                     "mountain",
                     "medium",
                     "crowded",
-                    "https://i.ibb.co/BzTQ9Yj/day-background.jpg"])
+                    "https://www.goralpoleca.pl/blog/wp-content/uploads/2019/09/20121009_AB4_2376-1.jpg"])
                 db.run(insert, [
                     "Krościenko nad Dunajcem",
                     "It is one of the most famous tourist and summer resorts.",
@@ -141,7 +140,7 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
                     "mountain",
                     "high",
                     "moderate",
-                    "https://i.ibb.co/BzTQ9Yj/day-background.jpg"])
+                    "https://visitmalopolska.pl/documents/20194/1657207/Widok+z+lotu+ptakaKro%C5%9Bcienko+nad+Dunajcem/9046b281-627d-4ebc-9e07-53d9a1bae09e?t=1638308563891&imageThumbnail=5"])
                 db.run(insert, [
                     "Ustrzyki Górne",
                     "It is a small settlement at the mouth of the Terebowiec stream to Wołosatka, located on the route of the Bieszczady bypass",
@@ -151,7 +150,7 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
                     "mountain",
                     "high",
                     "moderate",
-                    "https://i.ibb.co/BzTQ9Yj/day-background.jpg"])
+                    "https://www.bieszczady.net.pl/wp-content/uploads/2019/05/DSC01375-750x450.jpg"])
 
                 db.run(insert, [
                     "Biebrzański Park Narodowy",
@@ -159,30 +158,91 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
                     "It has existed since 1993 and offers tourists wonderful, untouched nature and a peaceful holiday away from cities and crowds. They have not heard of crowds here, but there are a lot of places where it is difficult to find other tourists at all",
                     "53.49694950438412",
                     "22.7532055229156",
-                    "park",
+                    "national park",
                     "low",
                     "less crowded",
-                    "https://i.ibb.co/BzTQ9Yj/day-background.jpg"])
+                    "https://zaciszezieloneogrody.pl/wp-content/uploads/2020/03/Biebrzan%CC%81ski-Park-Narodowy.jpeg"])
                 db.run(insert, [
                     "Słowiński Park Narodowy",
                     "short description",
                     "The Słowiński National Park is particularly famous for its shifting dunes stretching between Rowy and Łeba. The most popular are Wydma Czołpińska and Wydma Łącka. The Czołpińska Dune can be reached from the village of Czołpino, following the red trail.",
                     "53.49622488349215",
                     "22.751448626534412",
-                    "park",
+                    "national park",
                     "low",
                     "less crowded",
-                    "https://i.ibb.co/BzTQ9Yj/day-background.jpg"])
+                    "https://www.polska.travel/wp-content/uploads/2022/12/wydmy_slowinski_pn_1170-2.jpg"])
                 db.run(insert, [
                     "Białowieski Park Narodowy",
                     "short description",
                     "The park covers part of the Białowieża Forest, which is the only lowland forest in Europe preserved in a natural state. The largest area of ​​the park is occupied by oak-lime-hornbeam forests of the oak-hornbeam type. The deciduous trees are dominated by oaks, hornbeams, maples, ashes and alders, while the coniferous trees are dominated by pines and spruces.",
                     "52.710368734310116",
                     "23.847813122589777",
-                    "park",
+                    "national park",
                     "low",
                     "less crowded",
-                    "https://i.ibb.co/BzTQ9Yj/day-background.jpg"])
+                    "https://podrozesylvia.pl/wp-content/uploads/2021/03/Bialowieza.jpg"])
+                db.run(insert, [
+                    "Energylandia",
+                    "Energylandia is the largest amusement park in the country, at 70 hectares.",
+                    "Energylandia is an amusement park located in Zator, Lesser Poland, in southern Poland. It is approximately 50 kilometres away from Kraków and 335 kilometres away from Warsaw, Poland's capital city. Energylandia is the largest amusement park in the country, at 70 hectares.",
+                    "49.99954061672213",
+                    "19.41131362648161",
+                    "amusement park",
+                    "high",
+                    "crowded",
+                    "https://lh3.googleusercontent.com/p/AF1QipMWx6Y5MdMF9nyWDV5Lf0_hb7F64L3Cbw9KelHY=s680-w680-h510"])  
+                db.run(insert, [
+                    "Zatorland Amusement Park",
+                    "Theme park with animatronic dinosaurs, giant insects, mythical creatures & classic funfair rides.",
+                    "Energylandia is an amusement park located in Zator, Lesser Poland, in southern Poland. It is approximately 50 kilometres away from Kraków and 335 kilometres away from Warsaw, Poland's capital city. Energylandia is the largest amusement park in the country, at 70 hectares.",
+                    "49.988715370753674",
+                    "19.441994710258086",
+                    "amusement park",
+                    "medium",
+                    "crowded",
+                    "https://lh3.googleusercontent.com/p/AF1QipMN0wLbGXnKKZ-f87ThDL_fmbLU_OpwgesP1VUj=s680-w680-h510"])
+                db.run(insert, [
+                    "Legendia Silesian Amusement Park",
+                    "Legendia is an amusement park located within Silesian Park in the center of the Upper Silesian Metropolitan Union, Silesia, Poland. It has an area of 26 ha. In 2008, the park saw 253,000 visitors.",
+                    "Energylandia is an amusement park located in Zator, Lesser Poland, in southern Poland. It is approximately 50 kilometres away from Kraków and 335 kilometres away from Warsaw, Poland's capital city. Energylandia is the largest amusement park in the country, at 70 hectares.",
+                    "50.27340111387848",
+                    "18.991439192556975",
+                    "amusement park",
+                    "medium",
+                    "crowded",
+                    "https://lh3.googleusercontent.com/p/AF1QipMDCbFJhKKHphpW0vevElgJj0V2GS4GC2TxyIWA=s680-w680-h510"])
+                db.run(insert, [
+                    "Aquapark Kalisz",
+                    "Water park with slides & leisure pools, 25m swimming pool, ice rink, sauna zone & fitness classes.",
+                    "Energylandia is an amusement park located in Zator, Lesser Poland, in southern Poland. It is approximately 50 kilometres away from Kraków and 335 kilometres away from Warsaw, Poland's capital city. Energylandia is the largest amusement park in the country, at 70 hectares.",
+                    "51.75678154681491",
+                    "18.102074581236643",
+                    "aqua park",
+                    "low",
+                    "crowded",
+                    "https://lh3.googleusercontent.com/p/AF1QipMssHQIWNt04R36YVKZDL33koOH7Ob-iUQCBmkN=s680-w680-h510"])
+                db.run(insert, [
+                    "Termy Maltańskie",
+                    "Sprawling aquatic complex with 15+ indoor & outdoor pools, water slides, a lazy river, saunas & spa",
+                    "Energylandia is an amusement park located in Zator, Lesser Poland, in southern Poland. It is approximately 50 kilometres away from Kraków and 335 kilometres away from Warsaw, Poland's capital city. Energylandia is the largest amusement park in the country, at 70 hectares.",
+                    "52.40578293295723",
+                    "16.973907306411963",
+                    "aqua park",
+                    "medium",
+                    "crowded",
+                    "https://www.dzieckowpodrozy.pl/wp-content/uploads/Aquapark-poznan-atrakcje-dla-dzieci.jpg"])    
+                db.run(insert, [
+                    "Aqua Lublin",
+                    "Saunas with colored lights & music, whirlpool baths & indoor swimming in an Olympic-sized pool.",
+                    "Energylandia is an amusement park located in Zator, Lesser Poland, in southern Poland. It is approximately 50 kilometres away from Kraków and 335 kilometres away from Warsaw, Poland's capital city. Energylandia is the largest amusement park in the country, at 70 hectares.",
+                    "51.23682254941263",
+                    "22.568992780015066",
+                    "aqua park",
+                    "medium",
+                    "crowded",
+                    "https://lh3.googleusercontent.com/p/AF1QipOdvpRpYZ7wqcZwuhknh8UcmpBEs3ex6I5KgXXT=s680-w680-h510"])       
+
 
                 console.log("Successfully inserted into 'places' table")
         

@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 import closeIconImage from '../icons/close.png';
 import './OpinionsBox.css'
 
@@ -9,13 +10,14 @@ const OpinionsBox = ({ locationId, onClose }) => {
   const username = localStorage.getItem('username');
   const [content, setContent] = useState("");
   const [data, setData] = useState([])
+  const MySwal = withReactContent(Swal)
 
   const api = axios.create({
     baseURL: 'http://localhost:5001',
   });
-
+ 
   const handleAddOpinion = async () => {
-    if (content.length > 5) {
+    if (content.length > 2) {
       try {
         const token = localStorage.getItem('token');
         const response = await axios.post('http://localhost:5001/api/opinions', {
@@ -32,7 +34,14 @@ const OpinionsBox = ({ locationId, onClose }) => {
         const data = response.data;
         console.log(data);
         fetchOpinion();
-        setContent("")
+        setContent("");
+        Swal.fire({
+          position: 'top',
+          icon: 'success',
+          title: 'Your opinion has been added',
+          showConfirmButton: false,
+          timer: 1500
+        })
       } catch (error) {
         alert(error.message);
         console.log(error);
@@ -73,9 +82,15 @@ const OpinionsBox = ({ locationId, onClose }) => {
         <img src={closeIconImage} alt="Close" className="closeButton" />
       </div>
       <h2>Opinions:</h2>
-      {data.map((item)=>{
-        return(<div key={item.id}><span className='username'>{item.user_name}:</span> {item.content}</div>)
-      })}
+      {data.length === 0 ? (
+        <div className="empty">Empty...</div>
+      ) : (
+        data.map((item) => (
+          <div key={item.id} className='oneOpinion'>
+            <span className='username'>{item.user_name}:</span> {item.content}
+          </div>
+        ))
+      )}
 
       {username && (
         <div className='opinionsAdd'>

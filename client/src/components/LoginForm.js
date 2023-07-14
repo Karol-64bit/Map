@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import AdminPanel from './AdminPanel/AdminPanel';
 import axios from 'axios';
-
-import "../App.css";
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 import closeIconImage from '../icons/close.png';
+import "../App.css";
+
 
 const LoginForm = () => {
   const [showLoginForm, setShowLoginForm] = useState(false);
@@ -16,6 +18,8 @@ const LoginForm = () => {
   const api = axios.create({
     baseURL: 'http://localhost:5001',
   });
+
+  const MySwal = withReactContent(Swal);
 
   useEffect(() => {
     setIsLoggedIn(localStorage.getItem('username') ? true : false);
@@ -91,11 +95,27 @@ const LoginForm = () => {
   };
 
   const logOutHandle = () => {
-    console.log("User logged out");
-    localStorage.removeItem('token');
-    localStorage.removeItem('username');
-    localStorage.removeItem('userId');
-    setIsLoggedIn(false);
+
+    Swal.fire({
+      title: 'Do you want to log out?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, log me out!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        console.log("User logged out");
+        localStorage.removeItem('token');
+        localStorage.removeItem('username');
+        localStorage.removeItem('userId');
+        setIsLoggedIn(false);
+        Swal.fire(
+          'Logged out!'
+        )
+      }
+    })
+
   }
 
   if (isLoggedIn) {
